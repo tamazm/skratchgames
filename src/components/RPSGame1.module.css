@@ -1,0 +1,186 @@
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .RPSgameDiv {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+  .result {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @keyframes rotateAndBack {
+    /* Rotate from initial position to 180 degrees */
+    50% {
+      transform: rotate(5deg);
+    }
+  
+    /* Rotate back to the initial position */
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  @keyframes rotateAndBack1 {
+    /* Rotate from initial position to 180 degrees */
+    50% {
+      transform: rotate(-5deg);
+    }
+  
+    /* Rotate back to the initial position */
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  .rotating {
+    animation: rotateAndBack 0.5s linear infinite;
+    transform-origin: bottom right; /* Set the animation name, duration, and timing function */
+  }
+  .rotating1 {
+    transform-origin: bottom left; /* Set the animation name, duration, and timing function */
+    animation: rotateAndBack1 0.5s linear infinite; /* Set the animation name, duration, and timing function */
+  }
+  .resultDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 80%;
+    z-index: 1;
+  }
+  .RPSgameLayer1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .disabled {
+    pointer-events: none;
+  }
+  .winCounter {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .HandDiv1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .HandDiv2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    overflow: hidden;
+    z-index: 0;
+  }
+  
+  .RPSgameLayer1Img2,
+  .RPSgameLayer1Img1 {
+    width: 50%;
+    top: 5% !important;
+    position: absolute;
+  }
+  .RPSgameLayer1Img2 {
+    right: 65%;
+    z-index: 0;
+  }
+  .RPSgameLayer1Img1 {
+    left: 65%;
+    z-index: 0;
+  }
+  .RPSGameLayer2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  @keyframes shakeRotate {
+    0% {
+      transform: rotate(0deg);
+      transform-origin: center;
+    }
+    75% {
+      transform: rotate(-5deg);
+      transform-origin: center;
+    }
+    100% {
+      transform: rotate(0deg);
+      transform-origin: center;
+    }
+  }
+  .Optionimg {
+    width: 10rem;
+    cursor: pointer;
+  }
+  .Optionimg:hover {
+    animation: shakeRotate 0.3s infinite alternate;
+  }
+  .layerDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .resultText {
+    font-family: "Sey";
+    color: white; /* Text color inside */
+    -webkit-text-stroke: 0.5px black; /* Outline color and width */
+    text-shadow: 0.5px 0.5px 0 black, -0.5px -0.5px 0 black, -0.5px 0.5px 0 black,
+      0.5px -0.5px 0 black;
+    font-size: 3rem;
+  }
+  .winsDiv {
+    font-family: "Sey";
+    color: white; /* Text color inside */
+    -webkit-text-stroke: 0.5px black; /* Outline color and width */
+    text-shadow: 0.5px 0.5px 0 black, -0.5px -0.5px 0 black, -0.5px 0.5px 0 black,
+      0.5px -0.5px 0 black;
+    font-size: 3rem;
+  }
+  @media screen and (max-width: 748px) {
+    .RPSgameLayer1Img2,
+    .RPSgameLayer1Img1 {
+      top: 25% !important;
+      width: 30rem;
+    }
+    .resultDiv {
+      height: 75%;
+    }
+    .RPSgameLayer1Img2 {
+      right: 40%;
+    }
+    .RPSgameLayer1Img1 {
+      left: 40%;
+    }
+    .RPSgameLayer1 {
+      align-items: center;
+    }
+  }
+  
+  .topper {
+    top: 27.5% !important;
+  }
