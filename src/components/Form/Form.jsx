@@ -77,7 +77,7 @@ function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #
           }}
         >
           <div style={{ padding: "1rem", display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
-            <input style={{ position: "relative", top: "0.5rem" }} type="checkbox" />
+            <input style={{ width: "2rem", height: "1.5rem", position: "relative", top: "0" }} type="checkbox" />
 
             <p
               style={{
