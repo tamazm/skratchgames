@@ -8,19 +8,18 @@ function winningResult() {
     <div className={styles.resultDiv}>
       <div className={styles.topDiv}>
         <img src={ilus} style={{ width: "100%" }} />
-        <h1>Congrats! You've Won!</h1>
-        <p>
-          Get ready to celebrate! You're a winner in the recent Skratchville
-          promotion!
+        <h1  style={{fontSize:'1.2rem',fontWeight:'900'}}>Congrats You've Won!</h1>
+        <p style={{fontSize:'1rem'}}>
+          Get ready to celebrate!
         </p>
-        <p>
+        <p style={{fontSize:'0.8rem',padding:'0rem 1rem 0rem 1rem'}}>
           In the meantime, keep an eye out for more exciting Skratchville
           promotions! We love rewarding our loyal users, and you might just be a
           winner again soon.
         </p>
         <button
           className={styles.SBtn}
-          style={{ fontSize: "1rem", padding: "0.5rem 1.5rem" }}
+          style={{ fontSize: "1rem", padding: "0.5rem 1.5rem",marginBottom:'1rem' }}
           onClick={() => {
             setlosing(false);
           }}
@@ -29,7 +28,7 @@ function winningResult() {
         </button>
       </div>
       <div className={styles.botDiv}>
-        <p>
+        <p style={{fontSize:'0.8rem'}}>
           Share with your friend and if they enter get another chance to win!
         </p>
         <div className={styles.socialDiv}>
