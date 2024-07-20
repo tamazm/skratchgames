@@ -110,6 +110,10 @@
   transform-origin: center;
 }
 
+.wheel-container {
+  pointer-events: none;
+}
+
 @keyframes spinAnimation {
   from {
     transform: rotate(0deg);
