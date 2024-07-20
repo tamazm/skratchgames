@@ -1,0 +1,146 @@
+:where(.ui-wheel-of-fortune) {
+  --_items: 12;
+  all: unset;
+  aspect-ratio: 1 / 1;
+  background: Canvas;
+  container-type: inline-size;
+  direction: ltr;
+  display: grid;
+  place-content: center start;
+  width: 20%;
+  height: 20%;
+  background: transparent;
+
+  li {
+    font-weight: bold;
+
+    align-content: center;
+    background: hsl(calc(360deg / var(--_items) * calc(var(--_idx))), 100%, 75%);
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+
+    display: grid;
+    grid-area: 1 / -1;
+    aspect-ratio: 1 / calc(2 * tan(180deg / var(--_items)));
+    list-style: none;
+    padding-left: 1ch;
+    rotate: calc(360deg / var(--_items) * calc(var(--_idx) - 1 / 2));
+    transform-origin: center right;
+    width: 50cqi;
+
+    position: relative; /* Ensure pseudo-elements are positioned relative to each slice */
+
+    /* Apply background colors based on odd or even index */
+    &:nth-of-type(odd) {
+      --_idx: calc(var(--_idx) + 1); /* Increment index for correct rotation */
+      background: linear-gradient(to right, #c3003e, #fb437c);
+      color: #faf5f8;
+    }
+    &:nth-of-type(even) {
+      --_idx: calc(var(--_idx) + 1); /* Increment index for correct rotation */
+      background: linear-gradient(to right, #fcf6f9, #fdf7fa);
+      color: #f30652;
+    }
+
+    &:nth-of-type(1) {
+      --_idx: 1;
+    }
+    &:nth-of-type(2) {
+      --_idx: 2;
+    }
+    &:nth-of-type(3) {
+      --_idx: 3;
+    }
+    &:nth-of-type(4) {
+      --_idx: 4;
+    }
+    &:nth-of-type(5) {
+      --_idx: 5;
+    }
+    &:nth-of-type(6) {
+      --_idx: 6;
+    }
+    &:nth-of-type(7) {
+      --_idx: 7;
+    }
+    &:nth-of-type(8) {
+      --_idx: 8;
+    }
+    &:nth-of-type(9) {
+      --_idx: 9;
+    }
+    &:nth-of-type(10) {
+      --_idx: 10;
+    }
+    &:nth-of-type(11) {
+      --_idx: 11;
+    }
+    &:nth-of-type(12) {
+      --_idx: 12;
+    }
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: -200%; /* Adjust to increase the height */
+      bottom: -200%; /* Adjust to increase the height */
+      right: 0;
+      width: 2.5%; /* Adjust thickness of the line */
+      transform-origin: center;
+      transform: rotate(105deg);
+      background: linear-gradient(to right, #e5cba2, #d9a458, #eec184);
+      border: 1.5px solid #d9a458;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Horizontal offset, vertical offset, blur radius, color */
+    }
+  }
+}
+
+.ui-wheel-of-fortune li .text-wrapper {
+  transform: scale(-1, -1); /* Flip the text */
+  text-indent: 50%;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 7cqi;
+  letter-spacing: -1px;
+}
+
+.ui-wheel-of-fortune {
+  transition: transform 4s cubic-bezier(0.44, -0.205, 0, 1.13);
+  transform-origin: center;
+}
+
+@keyframes spinAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(3600deg); /* Example: 10 full rotations */
+  }
+}
+
+@keyframes blurIn {
+  0% {
+    filter: blur(0);
+  }
+  60% {
+    filter: blur(1.5px); /* Peak blur */
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+.ui-wheel-of-fortune.spinning {
+  animation: blurIn 3s ease-in forwards; /* Animation when starting to spin */
+}
+
+@media only screen and (max-width: 768px) {
+  .wheel-container {
+    transform: scale(3) !important;
+    margin: 10rem 0 !important;
+  }
+
+  .ui-wheel-of-fortune li .text-wrapper {
+    letter-spacing: -0.3px;
+  }
+}
