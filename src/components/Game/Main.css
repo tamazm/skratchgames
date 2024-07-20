@@ -8,8 +8,8 @@
   min-height: 100vh;
 
   background: url(./assets/background.png) no-repeat center;
+  background: "linear-gradient(to right, #970631, #5d001c)";
   background-size: cover;
-  background-color: #181818;
 
   padding: 4rem 1rem;
   padding-top: 3rem;
