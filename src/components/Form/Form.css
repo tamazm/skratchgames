@@ -1,0 +1,41 @@
+.form {
+    background-color: rgba(255, 255, 255, 1);
+    width: 35%;
+
+    border-radius: 12px;
+
+    padding: 4rem 3rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    margin: 0 auto;
+}
+
+.form h4 {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    color: #686868;
+    width: 47.5%;
+    font-size: 0.75rem;
+    border-radius: 12px;
+
+    padding: 0.5rem 0.75rem;
+
+}
+
+.form label, .form input {
+    background-color: #EAEAEC;
+}
+
+.form input {
+    outline: none;
+    color: black;
+    font-size: 1rem;
+}
