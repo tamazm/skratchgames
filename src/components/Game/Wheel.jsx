@@ -32,7 +32,7 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const delay = functional ? 0 : 2000;
-        const duration = functional ? 6 : 3;
+        const duration = functional ? 6 : 1.5;
         const easing = functional ? "cubic-bezier(0.440, -0.205, 0.000, 1)" : "ease";
 
         setTimeout(() => {
