@@ -9,14 +9,13 @@
 
   background: url(./assets/background.png) no-repeat center;
   background-size: cover;
-  background-color: black;
+  background-color: #181818;
 
   padding: 4rem 1rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
   margin: 0;
   animation: backgroundAppear 1.5s ease-out forwards;
 }
-
 
 @keyframes backgroundAppear {
   from {

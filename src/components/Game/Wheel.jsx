@@ -5,6 +5,9 @@ import center from "./assets/center.png";
 import "./Wheel.css"; // Add any styles related to the wheel here
 import { useMainContext } from "./MainContext";
 
+import play from "./assets/play.png";
+import spin from "./assets/spin.png";
+
 const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
   const { setPage, showConfetti } = useMainContext();
   const wheelRef = useRef(null);
@@ -179,12 +182,11 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
 
       <button
         style={{
-          border: "1px solid gold",
           padding: "0 1rem",
           cursor: "pointer",
           borderRadius: "12px",
           margin: "0 auto",
-          marginTop: "5rem",
+          marginTop: "4rem",
           color: "gold",
           width: "fit-content",
           zIndex: "99",
@@ -195,7 +197,8 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
         // disabled={spinning} // Disable the button while spinning
         onClick={buttonOnClick}
       >
-        {buttonContent}
+        {/* {buttonContent} */}
+        <img style={{ width: "7rem" }} src={buttonContent === "PLAY" ? play : spin} />
       </button>
     </>
   );

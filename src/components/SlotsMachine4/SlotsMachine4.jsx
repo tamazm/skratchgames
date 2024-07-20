@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./SlotsMachine4.module.css";
 import Scanvas from "../../assets/slotsmachine/slotscanvas.png";
 import Sbg from "../../assets/slotsmachine/slotsbg.png";

@@ -47,7 +47,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.topDiv{
+.topDiv {
   width: 30rem;
   height: 30rem;
   background-color: #fff;
@@ -57,7 +57,7 @@
   justify-content: space-between;
   flex-direction: column;
 }
-.botDiv{
+.botDiv {
   width: 30rem;
   height: 6rem;
   background-color: #fff;
@@ -68,7 +68,24 @@
   text-align: center;
   flex-direction: column;
 }
-.socialDiv{
+
+@media only screen and (max-width: 1200px) {
+  .resultDiv {
+    width: 100%;
+    height: 100%;
+    width: 90%;
+  }
+  .topDiv {
+    width: 100%;
+    height: 57.5%;
+  }
+  .botDiv {
+    width: 100%;
+    padding: 4rem 0;
+  }
+}
+
+.socialDiv {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -113,13 +130,7 @@
   width: 7rem;
 }
 .SBtn {
-  background: linear-gradient(
-    to right,
-    #960000 0%,
-    #d40000 11%,
-    #c20000 53%,
-    #f70000 100%
-  );
+  background: linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%);
   color: #fff;
   padding: 1rem 3rem 1rem 3rem;
   border-radius: 0.5rem;

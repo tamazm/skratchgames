@@ -1,6 +1,6 @@
 .form {
   background-color: rgba(255, 255, 255, 1);
-  width: 37.5%;
+  width: 42.5%;
 
   border-radius: 12px;
 
@@ -81,7 +81,7 @@
 @media only screen and (max-width: 600px) {
   .form {
     padding: 3rem 2.5rem;
-    width: 70%;
+    width: 75%;
   }
 }
 
@@ -95,5 +95,27 @@
 @media only screen and (max-width: 400px) {
   .form {
     width: 62.5%;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .form {
+    padding: 2rem 1.5rem;
+    width: 55%;
+  }
+  .checkbox-cont {
+    height: 9rem !important;
+  }
+
+  .privacy-policy-container {
+    flex-direction: column;
+    text-align: center;
+  }
+  .privacy-policy-container button {
+    width: 100% !important;
+  }
+
+  .privacy-policy-container .text-privacy-policy {
+    width: 100% !important;
   }
 }

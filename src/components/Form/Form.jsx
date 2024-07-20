@@ -100,20 +100,25 @@ function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #
           />
         </div>
 
-        <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start", justifyContent: "space-between", width: "100%" }}>
-          <button
+        <div
+          className="privacy-policy-container"
+          style={{ display: "flex", gap: "1rem", alignItems: "flex-start", justifyContent: "space-between", width: "100%" }}
+        >
+          <motion.button
+            whileTap={{ scale: 0.85 }}
             style={{
-              width: "30%",
+              minWidth: "30%",
               padding: "1rem",
               borderRadius: "12px",
               background: gradient,
               color: "#fff",
               fontWeight: "bold",
+              textAlign: "center",
             }}
             onClick={() => setPage(3)}
           >
             Submit
-          </button>
+          </motion.button>
           <p className="text-privacy-policy" style={{ fontSize: "0.6rem", opacity: "0.75", width: "70%" }}>
             By clicking this button you acknowledge that this promotion has been created by Skratchville for demonstration of its
             gamification technology. No real prizes are available to win. Your data will be processed according to our{" "}
