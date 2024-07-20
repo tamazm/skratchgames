@@ -53,8 +53,8 @@ function SlotsMachine4() {
 
   return (
     <div className={styles.main}>
-      {winning && <WinningResult />}
-      {losing && <LosingResult />}
+      {winning && <WinningResult handlewin={()=>{setwinning(false)}}/>}
+      {losing && <LosingResult handlelose={()=>{setlosing(false)}} />}
       <div className={styles.slotDiv}>
         <div className={styles.itemCont}>
           <div

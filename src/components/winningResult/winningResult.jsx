@@ -3,7 +3,7 @@ import facebook from "../../assets/slotsmachine/facebook-black.svg";
 import twitter from "../../assets/slotsmachine/twitter-black.svg";
 import linkdin from "../../assets/slotsmachine/linkdin.png";
 import ilus from "../../assets/slotsmachine/ilustration1.jpg";
-function winningResult() {
+function winningResult({handlewin}) {
   return (
     <div className={styles.resultDiv}>
       <div className={styles.topDiv}>
@@ -20,9 +20,7 @@ function winningResult() {
         <button
           className={styles.SBtn}
           style={{ fontSize: "1rem", padding: "0.5rem 1.5rem",marginBottom:'1rem' }}
-          onClick={() => {
-            setlosing(false);
-          }}
+          onClick={handlewin}
         >
           Finish
         </button>
