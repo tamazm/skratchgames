@@ -1,11 +1,9 @@
-import React from "react";
-
 import wheelof from "./assets/wheelof.png";
 import fortune from "./assets/fortune.png";
 
 function Title() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1.75rem" }}>
+    <div className="title-texts" style={{ padding: "1rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.75rem" }}>
       <img style={{ width: "24rem"}} src={wheelof} />
       <img style={{ width: "17.5rem"}} src={fortune} />
 

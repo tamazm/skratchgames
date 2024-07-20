@@ -4,24 +4,15 @@ import { useMainContext } from "../Game/MainContext";
 
 import preview from "../Game/assets/mockup.png";
 import Popup from "reactjs-popup";
+import Title from "../Game/Title";
 
 function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #ad8214, #f4da53)" }) {
   const { setPage } = useMainContext();
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <div>
-        <h1 style={{ color: "gold", textAlign: "center", fontSize: "4rem" }}>WHEEL OF</h1>
-        <h1
-          style={{
-            color: "gold",
-            textAlign: "center",
-            fontSize: "4rem",
-          }}
-        >
-          FORTUNE{" "}
-        </h1>
-      </div>
+      <Title />
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
