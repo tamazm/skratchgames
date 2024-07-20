@@ -4,7 +4,7 @@ import Wheel from "./Wheel";
 
 function Game() {
   return (
-    <div>
+    <div className="container">
       <Title />
       <Wheel buttonContent="SPIN" functional={true} />
     </div>
