@@ -20,27 +20,27 @@
   text-align: center;
 }
 
-  .form label {
-    display: flex;
-    flex-direction: column;
-    color: #686868;
-    width: 47.5%;
-    font-size: 0.75rem;
-    border-radius: 12px;
+.form label {
+  display: flex;
+  flex-direction: column;
+  color: #686868;
+  width: 47.5%;
+  font-size: 0.75rem;
+  border-radius: 12px;
 
-    padding: 0.5rem 1rem;
-  }
+  padding: 0.5rem 1rem;
+}
 
-  .form label,
-  .form input {
-    background-color: #eaeaec;
-  }
+.form label,
+.form input {
+  background-color: #eaeaec;
+}
 
-  .form input {
-    outline: none;
-    color: black;
-    font-size: 1rem;
-  }
+.form input {
+  outline: none;
+  color: black;
+  font-size: 1rem;
+}
 
 @media only screen and (max-width: 1200px) {
   .form {
@@ -49,8 +49,32 @@
 }
 
 @media only screen and (max-width: 750px) {
+  .tick-text {
+    font-size: 0.65rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .checkbox-cont {
+    background: url(../Game/assets/mockup.png);
+    gap: 0 !important;
+    height: 7rem !important;
+  }
+
   .form {
     width: 80%;
+  }
+
+  .form-checkbox-preview {
+    border-top-right-radius: 12px !important;
+    border-bottom-right-radius: 12px !important;
+
+    width: 37.5% !important;
+    object-fit: cover !important;
+  }
+
+  .text-privacy-policy {
+    font-size: 0.55rem !important;
   }
 }
 
@@ -58,5 +82,18 @@
   .form {
     padding: 3rem 2.5rem;
     width: 70%;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .form {
+    padding: 2.5rem 2rem;
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .form {
+    width: 62.5%;
   }
 }

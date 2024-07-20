@@ -1,4 +1,3 @@
-// Wheel.js
 import React, { useRef, useEffect, useState } from "react";
 import frame from "./assets/frame.png";
 import tick from "./assets/tick.png";
@@ -8,17 +7,14 @@ import { useMainContext } from "./MainContext";
 
 const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
   const { setPage, showConfetti } = useMainContext();
-
   const wheelRef = useRef(null);
   const spinButtonRef = useRef(null);
-
   const [previousEndDegree, setPreviousEndDegree] = useState(0);
   const [spinning, setSpinning] = useState(false);
 
   const spinWheel = () => {
     const wheel = wheelRef.current;
     if (!wheel || spinning) return; // Prevent spinning if already spinning
-
     setSpinning(true); // Set spinning to true
 
     // Calculate the new end degree
@@ -35,10 +31,13 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
         const delay = functional ? 0 : 2000;
         const duration = functional ? 6 : 15;
         const easing = functional ? "cubic-bezier(0.440, -0.205, 0.000, 1)" : "ease";
-        
+
         setTimeout(() => {
-            wheel.style.transition = `transform ${duration}s ${easing}`;
-            wheel.style.transform = `rotate(${newEndDegree}deg)`;
+          wheel.style.transition = `transform ${duration}s ${easing}`;
+          wheel.style.transform = `rotate(${newEndDegree}deg)`;
+          if (functional) {
+            wheel.classList.add("spinning");
+          }
         }, delay);
       });
     });
@@ -49,7 +48,6 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
     // Handle the end of the transition
     const handleTransitionEnd = () => {
       setSpinning(false); // Set spinning to false when done
-
       wheel.classList.remove("spinning");
       wheel.removeEventListener("transitionend", handleTransitionEnd);
 
@@ -60,8 +58,8 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
         }, 750);
       } else {
         // setTimeout(() => {
-        //   spinWheel(); 
-        // }, 500);  
+        //   spinWheel();
+        // }, 500);
       }
     };
 

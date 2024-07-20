@@ -124,7 +124,7 @@
     filter: blur(0);
   }
   60% {
-    filter: blur(1.5px); /* Peak blur */
+    filter: blur(0.5px); /* Peak blur */
   }
   100% {
     filter: blur(0);
@@ -142,5 +142,6 @@
 
   .ui-wheel-of-fortune li .text-wrapper {
     letter-spacing: -0.65px;
+    text-indent: 30%;
   }
 }

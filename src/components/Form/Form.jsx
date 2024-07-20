@@ -69,17 +69,18 @@ function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #
           style={{
             borderRadius: "12px",
             background: "#181818",
-
             display: "flex",
             justifyContent: "space-between",
             color: "#fff",
             gap: "1rem",
           }}
+          className="checkbox-cont"
         >
-          <div style={{ padding: "1rem", display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
+          <div style={{ width: "100%", padding: "1rem", display: "flex", alignItems: "flex-start", gap: "0.5rem" }}>
             <input style={{ minWidth: "20px", position: "relative", top: "0.5rem" }} type="checkbox" />
 
             <p
+              className="tick-text"
               style={{
                 fontSize: "0.8rem",
               }}
@@ -113,7 +114,7 @@ function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #
           >
             Submit
           </button>
-          <p style={{ fontSize: "0.6rem", opacity: "0.75", width: "70%" }}>
+          <p className="text-privacy-policy" style={{ fontSize: "0.6rem", opacity: "0.75", width: "70%" }}>
             By clicking this button you acknowledge that this promotion has been created by Skratchville for demonstration of its
             gamification technology. No real prizes are available to win. Your data will be processed according to our{" "}
             <Popup
