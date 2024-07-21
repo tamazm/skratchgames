@@ -67,7 +67,7 @@ function SlotsMachine4() {
       )}
       {confetti && (
         <Confetti
-          style={{ zIndex: "9999999", width: "100%", height: "100%" }}
+          style={{ zIndex: "9999999",backgroundRepeat:'repeat' }}
         />
       )}
       {page === 0 && (
