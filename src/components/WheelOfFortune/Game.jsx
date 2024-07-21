@@ -1,5 +1,5 @@
 import { useMainContext } from "./MainContext";
-import Title from "./Title";
+import Title from "../Title";
 import Wheel from "./Wheel";
 
 function Game() {
@@ -7,7 +7,7 @@ function Game() {
 
   return (
     <div style={{ display: page === 3 ? "flex" : "none" }} className="container">
-      <Title />
+      <Title type="form" />
       <Wheel buttonContent="SPIN" functional={true} />
     </div>
   );

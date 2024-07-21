@@ -8,10 +8,11 @@ import { motion } from "framer-motion";
 import Confetti from "react-confetti";
 import "./Main.css";
 
+import preview from "./assets/mockup.png";
 import background from "./assets/background.png";
 
 function Main() {
-  const { page, confetti, loading, setLoading } = useMainContext();
+  const { page, setPage, confetti, loading, setLoading } = useMainContext();
 
   useEffect(() => {
     const images = Array.from(document.getElementById("main").getElementsByTagName("img"));
@@ -85,7 +86,7 @@ function Main() {
         className="main"
       >
         <StartScreen />
-        {page === 2 && <Form />}
+        {page === 2 && <Form preview={preview} setPage={setPage} />}
         <Game />
         <Result />
 

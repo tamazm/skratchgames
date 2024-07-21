@@ -194,7 +194,7 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
         }}
         type="button"
         ref={spinButtonRef}
-        // disabled={spinning} // Disable the button while spinning
+        disabled={functional ? spinning : false} // Disable the button while spinning
         onClick={buttonOnClick}
       >
         {/* {buttonContent} */}

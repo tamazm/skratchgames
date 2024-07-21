@@ -1,5 +1,5 @@
 import { useMainContext } from "./MainContext";
-import Title from "./Title";
+import Title from "../Title";
 import Wheel from "./Wheel";
 
 function StartScreen() {
@@ -8,7 +8,7 @@ function StartScreen() {
   return (
     <div style={{ display: page === 1 ? "flex" : "none" }} className="container">
       <div>
-        <Title />
+        <Title type="form" />
 
         <h6 className="info" style={{ color: "#FFECB2", textAlign: "center", margin: "0 auto", marginTop: "2rem", fontWeight: "500" }}>
           Here at Skratchville we help organizations like yours generate new leads, create innovative customer and staff incentives,
