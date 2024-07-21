@@ -58,7 +58,7 @@ function Game() {
 
   return (
     <div
-      className="text-white transform scale-[0.475] sm:scale-[0.575] md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
+      className="text-white transform scale-[1] sm:scale-[1] md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
       style={page === 3 ? {} : { display: "none" }}
     >
       <Title bigger={true} type="scratch" />

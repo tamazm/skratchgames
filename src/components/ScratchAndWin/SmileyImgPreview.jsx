@@ -90,27 +90,26 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
 
     loadImages();
   }, [loadImage, drawImageOnCanvas, nonPreviewBottomImgSrc]);
-
   const scratch = (x, y) => {
     const canvas = document.getElementById(canvasId);
     const context = canvas?.getContext("2d");
-
+  
     if (context) {
       context.globalCompositeOperation = "destination-out";
       context.beginPath();
       context.arc(x, y, 40, 0, 2 * Math.PI);
       context.fill();
-
+  
       // Update scratched pixels count
       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
       let scratchedCount = 0;
-
+  
       for (let i = 0; i < imageData.data.length; i += 4) {
         if (imageData.data[i + 3] === 0) {
           scratchedCount++;
         }
       }
-
+  
       setScratchedPixels(scratchedCount);
     }
   };
@@ -119,25 +118,35 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     let isDragging = false;
     let lastX, lastY;
     let isPointerOverCanvas = false;
-
     const handlePointerDown = (event) => {
-      isDragging = true;
-      lastX = event.clientX;
-      lastY = event.clientY;
+      if (functional) {
+        isDragging = true;
+        const canvas = document.getElementById(canvasId);
+        if (canvas) {
+          const rect = canvas.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+    
+          // Check if the pointer is within the canvas bounds
+          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            scratch(x, y);
+          }
+        }
+      }
     };
 
     const handlePointerMove = (event) => {
       if (isDragging) {
         const canvas = document.getElementById(canvasId);
-        const rect = canvas.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        const y = event.clientY - rect.top;
-
-        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-          scratch(x, y);
-          isPointerOverCanvas = true;
-        } else {
-          isPointerOverCanvas = false;
+        if (canvas) {
+          const rect = canvas.getBoundingClientRect();
+          const x = event.clientX - rect.left;
+          const y = event.clientY - rect.top;
+    
+          // Check if the pointer is within the canvas bounds
+          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            scratch(x, y);
+          }
         }
       }
     };
@@ -145,7 +154,6 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     const handlePointerUp = () => {
       isDragging = false;
     };
-
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("pointerup", handlePointerUp);
