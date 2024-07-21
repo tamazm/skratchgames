@@ -49,16 +49,25 @@ function Game() {
   }, [scratchedStatuses, values]);
 
   useEffect(() => {
-    console.log(progress)
-    if (progress.every((prog) => prog >= 0.045)) {
+    const countAtLeastTwo = progress.filter((prog) => prog >= 0.2).length >= 2;
+
+    if (countAtLeastTwo) {
       showConfetti(true);
       setPage(4);
     }
   }, [progress, setPage]);
 
+  useEffect(() => {
+    window.onscroll = function () {
+      if (page === 3) {
+        window.scrollTo(0, 0);
+      }
+    };
+  }, [page]);
+
   return (
     <div
-      className="text-white transform scale-[1] sm:scale-[1] md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
+      className="text-white transform zoom-[50%] sm:zoom-[50%] md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
       style={page === 3 ? {} : { display: "none" }}
     >
       <Title bigger={true} type="scratch" />
@@ -79,8 +88,9 @@ function Game() {
         }}
       >
         <h1
-          className="text-[1.6rem] md:text-[1.65rem] font-sans"
+          className="text-[1.25rem] md:text-[1.65rem] font-sans"
           style={{
+            textAlign: "center",
             userSelect: "none",
           }}
         >

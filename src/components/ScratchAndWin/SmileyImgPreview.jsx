@@ -28,19 +28,25 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     (image) => {
       const canvas = document.getElementById(canvasId);
       const context = canvas?.getContext("2d", { willReadFrequently: true });
-
+  
       if (canvas && context) {
-        canvas.height = image.height / 4;
-        canvas.width = image.width / 4;
-
+        // Check if the device is mobile
+        const isMobile = window.matchMedia("only screen and (max-width: 767px)").matches;
+  
+        // Determine scaling factor based on device
+        const scaleFactor = isMobile && functional ? 8 : 4;
+  
+        canvas.height = image.height / scaleFactor;
+        canvas.width = image.width / scaleFactor;
+  
         const canvasWidth = canvas.width;
         const canvasHeight = canvas.height;
-
+  
         const imgAspectRatio = image.width / image.height;
         const canvasAspectRatio = canvasWidth / canvasHeight;
-
+  
         let drawWidth, drawHeight, offsetX, offsetY;
-
+  
         if (canvasAspectRatio > imgAspectRatio) {
           drawWidth = canvasWidth;
           drawHeight = canvasWidth / imgAspectRatio;
@@ -52,12 +58,13 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
           offsetX = (canvasWidth - drawWidth) / 2;
           offsetY = 0;
         }
-
+  
         context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
       }
     },
     [canvasId]
   );
+  
 
   const resetCanvas = useCallback(() => {
     const canvas = document.getElementById(canvasId);
@@ -154,6 +161,7 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     const handlePointerUp = () => {
       isDragging = false;
     };
+
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("pointerup", handlePointerUp);

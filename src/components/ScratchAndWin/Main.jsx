@@ -48,7 +48,9 @@ function Main() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }
-          : {}
+          : {
+            overflow: "hidden"
+          }
       }
     >
       <motion.div
