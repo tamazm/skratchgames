@@ -151,7 +151,7 @@ function BallGame() {
       {showPopup && (
         <>
           <WinningResult handlewin={handleEnd} />
-          <Confetti style={{ zIndex: "9999999" }} />
+          <Confetti style={{ zIndex: "9999999",width:'100%' }} />
         </>
       )}
     </div>
