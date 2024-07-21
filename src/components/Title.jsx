@@ -17,6 +17,9 @@ function Title({ type, bigger }) {
       {type === "quiz" && (
         <h1 style={{color:'Red',fontSize:'3rem',fontFamily:'cb'}}>Quiz</h1>
       )}
+      {type === "ballgame" && (
+        <h1 style={{color:'#FEB62A',fontSize:'3rem',fontFamily:'cb'}}>Prize Machine</h1>
+      )}
       {type === "form" && (
         <>
           <img style={{ width: "24rem" }} src={wheelof} />

@@ -10,7 +10,6 @@ import Confetti from "react-confetti";
 
 import title from "../../assets/slotsmachine/slottitle.png";
 import WinningResult from "../winningResult";
-import LosingResult from "../losingResult";
 import preview from "../../assets/slotsmachine/pre.png";
 
 function SlotsMachine4() {

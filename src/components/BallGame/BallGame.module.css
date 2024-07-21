@@ -1,0 +1,182 @@
+.main {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  padding: 4rem 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #403baa;
+}
+
+.gameDiv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: url("../../assets/ballgame/cursor1.png"), auto;
+}
+
+.glass1 {
+  position: absolute;
+  width: 17rem;
+  top: 6rem;
+}
+
+.Ball1 {
+  position: absolute;
+  width: 4rem;
+  bottom: 5rem;
+  right: 3.6rem;
+}
+.ballDiv {
+  width: 60%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1;
+}
+.ballDiv1 {
+  width: 35%;
+  position: absolute;
+  top: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 1;
+}
+.switch1 {
+  position: absolute;
+  width: 5rem;
+  top: 25rem;
+  left: 4.15rem;
+  cursor: pointer;
+  transition: transform 0.5s ease-in-out;
+  transform: rotate(0deg);
+  cursor: url("../../assets/ballgame/cursor1.png"), auto;
+}
+
+.gamei {
+  width: 20rem;
+}
+
+@keyframes rotateAnimation {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+@keyframes ballanimation1 {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(-5px);
+  }
+}
+@keyframes ballanimation2 {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+@keyframes shakeAnimation {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+.animate {
+  animation: rotateAnimation 1s ease-in-out forwards;
+}
+
+.shake {
+  animation: shakeAnimation 0.5s ease-in-out forwards;
+}
+.Ball2a {
+  animation: ballanimation1 0.5s ease-in-out forwards;
+}
+.Ball3a {
+  animation: ballanimation2 0.5s ease-in-out forwards;
+}
+.Ball4a {
+  animation: ballanimation2 0.5s ease-in-out forwards;
+}
+
+.popDiv {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/ballgame/Light.png");
+  background-position: center;
+  background-size: cover;
+  z-index: 9;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.popCont {
+  width: 20rem;
+  height: 8rem;
+  background-color: #403baa;
+  border: 8px solid #fff;
+  border-radius: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+  position: relative;
+}
+.starDiv {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
