@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "cb";
+  src: url('./assets/cb.ttf');
+}
+
 * {
   padding: 0;
   margin: 0;
