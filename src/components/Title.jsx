@@ -27,9 +27,10 @@ function Title({ type, bigger }) {
             WebkitBackgroundClip: "text" /* For WebKit browsers */,
             backgroundClip: "text" /* Standard property for other browsers */,
             color: "transparent" /* Ensure the text itself is transparent */,
-            fontSize: "5rem",
+            fontSize: "3rem",
             fontFamily: "rb" /* Ensure 'cb' is a valid font-family */,
             fontWeight: "bold" /* Add font-weight if needed */,
+            textAlign:'center'
           }}
         >
           Prize Machine

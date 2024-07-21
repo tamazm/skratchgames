@@ -14,6 +14,7 @@ import Form from "../Form/Form";
 import Confetti from "react-confetti";
 import preview from "../../assets/fillerimg.png";
 import Title from "../Title";
+import bgimage from "../../assets/ballgame/bgilus.png";
 
 const ballImages = [Ball1, Ball2, Ball3, Ball4, Ball5, Ball6];
 
@@ -27,32 +28,7 @@ function BallGame() {
   const [showPopup, setShowPopup] = useState(false);
   const [page, setpage] = useState(0);
 
-  useEffect(() => {
-    const shakeDuration = 2000; // Duration of the animation in milliseconds
-    const imageDisplayDuration = 2000; // Duration to show the image after animation
 
-    // Function to handle image change
-    const changeImage = () => {
-      const randomIndex = Math.floor(Math.random() * ballImages.length);
-      setSelectedBall1(ballImages[randomIndex]);
-
-      // Clear the image after the display duration
-      setTimeout(() => {
-        setSelectedBall1(null);
-      }, imageDisplayDuration);
-    };
-
-    // Interval to toggle animation and handle image change
-    const intervalId = setInterval(() => {
-      setShaking11((prev) => !prev);
-      setTimeout(() => {
-        changeImage();
-      }, shakeDuration);
-    }, shakeDuration); // Ensure the interval includes both animation and image display times
-
-    // Cleanup on component unmount or when animation should stop
-    return () => clearInterval(intervalId);
-  }, []);
   const handlePage = () => {
     setpage(page + 1);
   };
@@ -95,47 +71,7 @@ function BallGame() {
             leads, create innovative customer and staff incentives, all whilst
             saving both time and money!
           </h2>
-          <div className={styles.gameDiv}>
-            <div className={styles.ballDiv1}>
-              <img
-                src={Ball2}
-                className={`${styles.Ball2} ${shaking11 ? styles.Ball2b : ""}`}
-              />
-
-              <img
-                src={Ball4}
-                className={`${styles.Ball2} ${shaking11 ? styles.Ball2b : ""}`}
-              />
-            </div>
-            <div className={styles.ballDiv}>
-              <img
-                src={Ball2}
-                className={`${styles.Ball2} ${shaking11 ? styles.Ball4b : ""}`}
-              />
-              <img
-                src={Ball3}
-                className={`${styles.Ball2} ${shaking11 ? styles.Ball3b : ""}`}
-              />
-              <img
-                src={Ball4}
-                className={`${styles.Ball2} ${shaking11 ? styles.Ball4b : ""}`}
-              />
-            </div>
-            <img
-              src={glass1}
-              className={`${styles.glass1} ${shaking11 ? styles.shake1 : ""}`}
-            />
-            <img src={gameI} className={styles.gamei} />
-            <img
-              src={switch1}
-              alt="Switch"
-              className={`${styles.switch1} ${rotate ? styles.animate : ""}`}
-              onClick={handleClick}
-            />
-            {selectedBall1 && (
-              <img src={selectedBall1} className={styles.Ball1} />
-            )}
-          </div>
+          <img src={bgimage} style={{width:'15rem'}} />
           <button className={styles.enterBtn} onClick={handlePage}>Enter Now</button>
         </div>
       )}
