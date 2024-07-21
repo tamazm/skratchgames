@@ -5,10 +5,10 @@ import Popup from "reactjs-popup";
 
 import Title from "../Title";
 
-function Form({ preview, setPage, accentColor = "#c6aa60", gradient = "linear-gradient(to right, #ad8214, #f4da53)" }) {
+function Form({ type = "form", preview, setPage, accentColor = "#c6aa60", gradient = "linear-gradient(to right, #ad8214, #f4da53)" }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Title type="form" />
+      <Title type={type} />
 
       <motion.div
         initial={{ opacity: 0 }}

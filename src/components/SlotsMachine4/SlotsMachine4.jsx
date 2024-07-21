@@ -126,7 +126,7 @@ function SlotsMachine4() {
       )}
       {page === 1 && (
         <>
-          <Form preview={preview} setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
+          <Form type="slot" preview={preview} setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
         </>
       )}
       {page === 2 && (
