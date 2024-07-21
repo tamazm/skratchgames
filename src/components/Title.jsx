@@ -14,6 +14,9 @@ function Title({ type, bigger }) {
         gap: "1.75rem",
       }}
     >
+      {type === "quiz" && (
+        <h1 style={{color:'Red',fontSize:'3rem',fontFamily:'cb'}}>Quiz</h1>
+      )}
       {type === "form" && (
         <>
           <img style={{ width: "24rem" }} src={wheelof} />

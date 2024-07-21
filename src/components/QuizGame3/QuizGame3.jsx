@@ -59,7 +59,7 @@ const questions = [
 function QuizzGame3() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(18000); // 3 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null); // Track selected option for each question
   const [answers, setAnswers] = useState([]);
@@ -163,7 +163,7 @@ function QuizzGame3() {
     <div className={styles.main}>
       {page === 0 && (
         <>
-          <Form type="slot"  setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
+          <Form type="quiz"  setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
         </>
       )}
       {page === 1 && (
