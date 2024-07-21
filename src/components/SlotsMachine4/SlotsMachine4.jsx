@@ -131,6 +131,7 @@ function SlotsMachine4() {
       )}
       {page === 2 && (
         <>
+        
           <div className={styles.slotDiv}>
             <div className={styles.itemCont}>
               <div

@@ -82,10 +82,16 @@
   width: 50%;
 }
 @media only screen and (max-width: 800px) {
+  .main{
+    gap: 4rem;
+  }
   .resultDiv {
     width: 100%;
     height: 100%;
     width: 90%;
+  }
+  .titleImg{
+    width: 23rem !important;
   }
   .title2{
     width: 90%;
@@ -222,9 +228,4 @@
   animation: moveDown 1s forwards infinite;
   animation-delay: 0.6s;
   filter: blur(5px);
-}
-@media screen and (max-width:800px) {
-  .titleImg{
-    width: 20rem;
-  }
 }
