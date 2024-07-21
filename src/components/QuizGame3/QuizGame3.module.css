@@ -71,7 +71,14 @@
 .qInput:focus {
   border-bottom: 3px solid #181818;
 }
-
+.resultDiv1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 20rem;
+  color: #fff;
+}
 .CompanyNameDiv {
   display: flex;
   align-items: center;

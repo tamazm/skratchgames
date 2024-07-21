@@ -286,7 +286,7 @@ function QuizzGame3() {
                         </div>
                       ))}
                       {result && (
-                        <div className={styles.resultDiv}>
+                        <div className={styles.resultDiv1}>
                           <p>That’s the right Answer {coins1} Coins</p>
                           <img src={img6} style={{ width: "2rem" }} />
                         </div>
