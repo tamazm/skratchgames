@@ -5,7 +5,6 @@ import qimg from "../../assets/quizz/qimg.jpg";
 import qimg1 from "../../assets/quizz/qimg1.jpg";
 import qimg2 from "../../assets/quizz/qimg2.jpg";
 
-
 import x from "../../assets/quizz/x.png";
 import img6 from "../../assets/quizz/coin1.png";
 import img7 from "../../assets/quizz/checki.png";
@@ -54,7 +53,7 @@ const questions = [
 function QuizzGame3() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(80); // 3 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(80000); // 3 minutes in seconds
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null); // Track selected option for each question
   const [answers, setAnswers] = useState([]);
