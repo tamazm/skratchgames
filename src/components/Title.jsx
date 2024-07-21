@@ -2,7 +2,7 @@ import wheelof from "./WheelOfFortune/assets/wheelof.png";
 import fortune from "./WheelOfFortune/assets/fortune.png";
 import slot from "../assets/slotsmachine/slottitle.png";
 
-function Title({ type }) {
+function Title({ type, bigger }) {
   return (
     <div
       className="title-texts"
@@ -24,6 +24,17 @@ function Title({ type }) {
         <>
           <img style={{ width: "24rem" }} src={slot} />
         </>
+      )}
+      {type === "scratch" && bigger && (
+        <h1 style={{ fontSize: "5rem", textAlign: "center", fontFamily: "Cooper Black Regular", color: "#ebd940" }}> Scratch n Win</h1>
+      )}
+      {type === "scratch" && !bigger && (
+        <h1
+          className="text-6xl md:text-6xl lg:text-7xl text-center mx-auto max-w-sm md:max-w-md lg:max-w-lg"
+          style={{ fontFamily: "Cooper Black Regular", color: "#ebd940" }}
+        >
+          Scratch n Win
+        </h1>
       )}
     </div>
   );

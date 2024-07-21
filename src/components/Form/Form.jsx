@@ -114,6 +114,7 @@ function Form({ type = "form", preview, setPage, accentColor = "#c6aa60", gradie
               trigger={
                 <span
                   style={{
+                    fontWeight: "bold",
                     cursor: "pointer",
                     color: accentColor,
                   }}
