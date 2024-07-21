@@ -49,7 +49,8 @@ function Game() {
   }, [scratchedStatuses, values]);
 
   useEffect(() => {
-    const countAtLeastTwo = progress.filter((prog) => prog >= 0.2).length >= 2;
+    const countAtLeastTwo = progress.every((prog) => prog >= 0.2);
+    console.log(progress);
 
     if (countAtLeastTwo) {
       showConfetti(true);
@@ -58,9 +59,22 @@ function Game() {
   }, [progress, setPage]);
 
   useEffect(() => {
-    window.onscroll = function () {
+    if (page === 3) {
+      window.scrollTo(0, 0);
+    }
+
+    const handleTouchMove = (event) => {
+      event.preventDefault();
+    };
+
+    if (page === 3) {
+      // Check if the component is visible
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    }
+
+    return () => {
       if (page === 3) {
-        window.scrollTo(0, 0);
+        window.removeEventListener("touchmove", handleTouchMove);
       }
     };
   }, [page]);

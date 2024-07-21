@@ -23,6 +23,7 @@ function Result() {
             handlewin={() => {
               showConfetti(false);
               setPage(1);
+              window.location.relad
             }}
           />
         </>
@@ -33,6 +34,7 @@ function Result() {
             handlelose={() => {
               showConfetti(false);
               setPage(1);
+              window.location.relad
             }}
           />
         </>
