@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./BallGame.module.css";
 import gameI from "../../assets/ballgame/gamei.png";
 import switch1 from "../../assets/ballgame/switch.png";
@@ -13,26 +13,53 @@ import WinningResult from "../winningResult";
 import Form from "../Form/Form";
 import Confetti from "react-confetti";
 import preview from "../../assets/fillerimg.png";
+import Title from "../Title";
 
 const ballImages = [Ball1, Ball2, Ball3, Ball4, Ball5, Ball6];
 
 function BallGame() {
   const [rotate, setRotate] = useState(false);
   const [shaking, setShaking] = useState(false);
+  const [shaking11, setShaking11] = useState(true);
   const [animationEnded, setAnimationEnded] = useState(true);
   const [selectedBall, setSelectedBall] = useState(null);
+  const [selectedBall1, setSelectedBall1] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [page, setpage] = useState(0);
 
+  useEffect(() => {
+    const shakeDuration = 2000; // Duration of the animation in milliseconds
+    const imageDisplayDuration = 2000; // Duration to show the image after animation
+
+    // Function to handle image change
+    const changeImage = () => {
+      const randomIndex = Math.floor(Math.random() * ballImages.length);
+      setSelectedBall1(ballImages[randomIndex]);
+
+      // Clear the image after the display duration
+      setTimeout(() => {
+        setSelectedBall1(null);
+      }, imageDisplayDuration);
+    };
+
+    // Interval to toggle animation and handle image change
+    const intervalId = setInterval(() => {
+      setShaking11((prev) => !prev);
+      setTimeout(() => {
+        changeImage();
+      }, shakeDuration);
+    }, shakeDuration); // Ensure the interval includes both animation and image display times
+
+    // Cleanup on component unmount or when animation should stop
+    return () => clearInterval(intervalId);
+  }, []);
   const handlePage = () => {
     setpage(page + 1);
   };
   const handleClick = () => {
     if (!animationEnded) return; // Prevent multiple clicks while animation is playing
-
     setRotate(true);
     setAnimationEnded(false);
-
     // After rotate animation ends, start shaking animation
     setTimeout(() => {
       setShaking(true);
@@ -46,19 +73,81 @@ function BallGame() {
       setRotate(false);
       setShaking(false);
       setAnimationEnded(true);
-
       setShowPopup(true);
     }, 3000); // Adjust timing to match total animation duration
   };
-  const handleEnd = () =>{
+
+  const handleEnd = () => {
     setpage(0);
     setShowPopup(false);
-    setSelectedBall(null)
-  }
+    setSelectedBall(null);
+  };
   return (
     <div className={styles.main}>
-      {page === 0 && <Form type="ballgame" setPage={handlePage} accentColor="blue" preview={preview}/>}
-      {page === 1 && (  
+      {page === 0 && (
+        <div className={styles.page0}>
+          <Title type="ballgame" />
+          <h2
+            style={{ fontFamily: "cb", textAlign: "center" }}
+            className={styles.title2}
+          >
+            Here at Skratchville we help organizations like yours generate new
+            leads, create innovative customer and staff incentives, all whilst
+            saving both time and money!
+          </h2>
+          <div className={styles.gameDiv}>
+            <div className={styles.ballDiv1}>
+              <img
+                src={Ball2}
+                className={`${styles.Ball2} ${shaking11 ? styles.Ball2b : ""}`}
+              />
+
+              <img
+                src={Ball4}
+                className={`${styles.Ball2} ${shaking11 ? styles.Ball2b : ""}`}
+              />
+            </div>
+            <div className={styles.ballDiv}>
+              <img
+                src={Ball2}
+                className={`${styles.Ball2} ${shaking11 ? styles.Ball4b : ""}`}
+              />
+              <img
+                src={Ball3}
+                className={`${styles.Ball2} ${shaking11 ? styles.Ball3b : ""}`}
+              />
+              <img
+                src={Ball4}
+                className={`${styles.Ball2} ${shaking11 ? styles.Ball4b : ""}`}
+              />
+            </div>
+            <img
+              src={glass1}
+              className={`${styles.glass1} ${shaking11 ? styles.shake1 : ""}`}
+            />
+            <img src={gameI} className={styles.gamei} />
+            <img
+              src={switch1}
+              alt="Switch"
+              className={`${styles.switch1} ${rotate ? styles.animate : ""}`}
+              onClick={handleClick}
+            />
+            {selectedBall1 && (
+              <img src={selectedBall1} className={styles.Ball1} />
+            )}
+          </div>
+          <button className={styles.enterBtn} onClick={handlePage}>Enter Now</button>
+        </div>
+      )}
+      {page === 1 && (
+        <Form
+          type="ballgame"
+          setPage={handlePage}
+          accentColor="blue"
+          preview={preview}
+        />
+      )}
+      {page === 2 && (
         <div className={styles.gameDiv}>
           <div className={styles.ballDiv1}>
             <img
@@ -100,9 +189,12 @@ function BallGame() {
           {selectedBall && <img src={selectedBall} className={styles.Ball1} />}
         </div>
       )}
-      {showPopup && (<><WinningResult handlewin={handleEnd}/> 
-      <Confetti style={{ zIndex: "9999999"}}/>
-      </>)}
+      {showPopup && (
+        <>
+          <WinningResult handlewin={handleEnd} />
+          <Confetti style={{ zIndex: "9999999" }} />
+        </>
+      )}
     </div>
   );
 }

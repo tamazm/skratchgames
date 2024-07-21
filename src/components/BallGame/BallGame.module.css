@@ -15,7 +15,21 @@
   justify-content: center;
   cursor: url("../../assets/ballgame/cursor1.png"), auto;
 }
-
+.page0 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.enterBtn {
+  background: linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%);
+  padding: 1rem;
+  border-radius: 1rem;
+}
+.title2 {
+  width: 80%;
+  color: #fff;
+}
 .glass1 {
   position: absolute;
   width: 17rem;
@@ -136,6 +150,19 @@
 .shake {
   animation: shakeAnimation 0.5s ease-in-out forwards;
 }
+.shake1 {
+  animation: shakeAnimation 0.5s ease-in-out forwards infinite;
+}
+.Ball2b {
+  animation: ballanimation1 0.5s ease-in-out forwards infinite;
+}
+.Ball3b {
+  animation: ballanimation2 0.5s ease-in-out forwards infinite;
+}
+.Ball4b {
+  animation: ballanimation2 0.5s ease-in-out forwards infinite;
+}
+
 .Ball2a {
   animation: ballanimation1 0.5s ease-in-out forwards;
 }
