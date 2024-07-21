@@ -158,6 +158,7 @@ function QuizzGame3() {
     setQuizComplete(true);
   };
   const handleEnd = ()=>{
+    restartQuizHandler()
     setpage(0);
     setScore(0)
   }
