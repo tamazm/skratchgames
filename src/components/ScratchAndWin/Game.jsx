@@ -127,7 +127,9 @@ function Game() {
             />
           ))}
         </div>
-      </div>
+        {progress.map(p => <p>{p}</p>)}
+        </div>
+
     </div>
   );
 }
