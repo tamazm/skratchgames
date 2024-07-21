@@ -424,6 +424,7 @@
     justify-content: flex-start;
     width: 100%;
     padding: 0;
+    gap: 1rem;
   }
   .TimerDiv {
     width: 3.5rem;
