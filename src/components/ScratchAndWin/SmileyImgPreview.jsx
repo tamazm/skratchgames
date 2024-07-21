@@ -9,11 +9,18 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
   const nonPreviewBottomImgSrc = SmileyWText;
   const canvasId = `scratch-card-${id}-${randomValue}`; // Combine id and randomValue for unique canvas ID
 
-  const loadImage = useCallback((src, callback) => {
+  const loadImage = useCallback((src, callback, retryCount = 0) => {
     const image = new Image();
     image.crossOrigin = "Anonymous";
     image.onload = () => callback(null, image);
-    image.onerror = (err) => callback(err);
+    image.onerror = (err) => {
+      if (retryCount < 3) {
+        // Retry up to 3 times
+        setTimeout(() => loadImage(src, callback, retryCount + 1), 1000);
+      } else {
+        callback(err);
+      }
+    };
     image.src = src;
   }, []);
 
@@ -61,7 +68,7 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
       setScratchedPixels(0);
       loadImage(nonPreviewBottomImgSrc, (err, img) => {
         if (err) {
-          // console.error("Failed to load image", err);
+          console.error("Failed to load image", err);
         } else {
           drawImageOnCanvas(img);
         }
@@ -73,7 +80,7 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     const loadImages = () => {
       loadImage(nonPreviewBottomImgSrc, (err, img) => {
         if (err) {
-          // console.error("Failed to load image", err);
+          console.error("Failed to load image", err);
         } else {
           drawImageOnCanvas(img);
         }
@@ -110,66 +117,45 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
 
   const init = useCallback(() => {
     let isDragging = false;
-    const canvas = document.getElementById(canvasId);
+    let lastX, lastY;
+    let isPointerOverCanvas = false;
 
-    const handleMouseDown = (event) => {
-      if (functional) {
-        isDragging = true;
-        scratch(event.offsetX, event.offsetY);
-      }
+    const handlePointerDown = (event) => {
+      isDragging = true;
+      lastX = event.clientX;
+      lastY = event.clientY;
     };
 
-    const handleMouseMove = (event) => {
+    const handlePointerMove = (event) => {
       if (isDragging) {
-        scratch(event.offsetX, event.offsetY);
-      }
-    };
-
-    const handleMouseUp = () => {
-      isDragging = false;
-    };
-
-    const handleTouchStart = (event) => {
-      if (functional) {
-        isDragging = true;
-        const touch = event.touches[0];
-        scratch(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop);
-      }
-    };
-
-    const handleTouchMove = (event) => {
-      if (isDragging) {
-        event.preventDefault();
-        const touch = event.touches[0];
+        const canvas = document.getElementById(canvasId);
         const rect = canvas.getBoundingClientRect();
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        scratch(x, y);
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+          scratch(x, y);
+          isPointerOverCanvas = true;
+        } else {
+          isPointerOverCanvas = false;
+        }
       }
     };
 
-    const handleTouchEnd = () => {
+    const handlePointerUp = () => {
       isDragging = false;
     };
 
-    if (canvas) {
-      canvas.addEventListener("mousedown", handleMouseDown);
-      canvas.addEventListener("mousemove", handleMouseMove);
-      canvas.addEventListener("mouseup", handleMouseUp);
-      canvas.addEventListener("touchstart", handleTouchStart);
-      canvas.addEventListener("touchmove", handleTouchMove);
-      canvas.addEventListener("touchend", handleTouchEnd);
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("pointermove", handlePointerMove);
+    document.addEventListener("pointerup", handlePointerUp);
 
-      return () => {
-        canvas.removeEventListener("mousedown", handleMouseDown);
-        canvas.removeEventListener("mousemove", handleMouseMove);
-        canvas.removeEventListener("mouseup", handleMouseUp);
-        canvas.removeEventListener("touchstart", handleTouchStart);
-        canvas.removeEventListener("touchmove", handleTouchMove);
-        canvas.removeEventListener("touchend", handleTouchEnd);
-      };
-    }
-  }, [scratch, canvasId, functional]);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerup", handlePointerUp);
+    };
+  }, [scratch, canvasId]);
 
   useEffect(() => {
     const handleEndScratch = () => {
@@ -267,7 +253,14 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
 
   return (
     <div className="relative flex justify-center items-center">
-      <p className="absolute">{loading ? "" : currentPossibility}</p>
+      <p
+        className="absolute"
+        style={{
+          userSelect: "none",
+        }}
+      >
+        {loading ? "Loading..." : currentPossibility}
+      </p>
       <canvas className="z-20" id={canvasId} />
     </div>
   );

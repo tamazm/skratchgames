@@ -29,12 +29,27 @@ function Title({ type, bigger }) {
         </>
       )}
       {type === "scratch" && bigger && (
-        <h1 style={{ fontSize: "5rem", textAlign: "center", fontFamily: "Cooper Black Regular", color: "#ebd940" }}> Scratch n Win</h1>
+        <h1
+          style={{
+            userSelect: "none",
+            fontSize: "5rem",
+            textAlign: "center",
+            fontFamily: "Cooper Black Regular",
+            color: "#ebd940",
+          }}
+        >
+          {" "}
+          Scratch n Win
+        </h1>
       )}
       {type === "scratch" && !bigger && (
         <h1
           className="text-6xl md:text-6xl lg:text-7xl text-center mx-auto max-w-sm md:max-w-md lg:max-w-lg"
-          style={{ fontFamily: "Cooper Black Regular", color: "#ebd940" }}
+          style={{
+            userSelect: "none",
+            fontFamily: "Cooper Black Regular",
+            color: "#ebd940",
+          }}
         >
           Scratch n Win
         </h1>

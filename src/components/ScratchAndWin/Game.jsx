@@ -49,8 +49,9 @@ function Game() {
   }, [scratchedStatuses, values]);
 
   useEffect(() => {
-    if (progress.every((prog) => prog >= 0.10)) {
-      showConfetti(true)
+    console.log(progress)
+    if (progress.every((prog) => prog >= 0.045)) {
+      showConfetti(true);
       setPage(4);
     }
   }, [progress, setPage]);
@@ -77,7 +78,14 @@ function Game() {
           boxShadow: "3px 3px 5px rgba(0, 0, 0, 0.2), 0px 5px 5px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <h1 className="text-[1.6rem] md:text-[1.65rem] font-sans">SCRATCH THE GLOSSY SURFACE INSIDE THE FIELD</h1>
+        <h1
+          className="text-[1.6rem] md:text-[1.65rem] font-sans"
+          style={{
+            userSelect: "none",
+          }}
+        >
+          SCRATCH THE GLOSSY SURFACE INSIDE THE FIELD
+        </h1>
 
         <div style={{ display: "flex", gap: "1.5rem" }}>
           {values.map((value, index) => (
@@ -92,15 +100,6 @@ function Game() {
           ))}
         </div>
       </div>
-      {/* <div>Winning: {winning ? "Yes" : "No"}</div>
-      <div>
-        Progress:
-        {progress.map((prog, index) => (
-          <div key={index}>
-            Card {index + 1}: {prog.toFixed(2)}%
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }
