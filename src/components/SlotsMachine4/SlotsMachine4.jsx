@@ -6,6 +6,7 @@ import item1 from "../../assets/slotsmachine/item (1).png";
 import item2 from "../../assets/slotsmachine/item (2).png";
 import item3 from "../../assets/slotsmachine/item (3).png";
 import Form from "../Form/Form";
+import Confetti from "react-confetti";
 
 import title from "../../assets/slotsmachine/slottitle.png";
 import WinningResult from "../winningResult";
@@ -19,6 +20,7 @@ function SlotsMachine4() {
   const [losing, setlosing] = useState(false);
   const imageSources = [item1, item2, item3];
   const [page, setpage] = useState(0);
+  const [confetti, setconfetti]=useState(false)
 
   const animateDivs = () => {
     setAnimate(true);
@@ -32,9 +34,12 @@ function SlotsMachine4() {
   const handlewinning = () => {
     if (randomImage === randomImage2 && randomImage2 === randomImage3) {
       setwinning(true);
+      setconfetti(true)
     } else {
       setlosing(true);
+      setconfetti(true)
     }
+    console.log(confetti)
   };
   const handleSpin = () => {
     animateDivs();
@@ -74,6 +79,7 @@ function SlotsMachine4() {
           }}
         />
       )}
+      {confetti && <Confetti style={{ zIndex: "9999999",width:"100%",height:'100vh' }} />}
       {page === 0 && (
         <>
         <img src={title} className={styles.titleImg} />

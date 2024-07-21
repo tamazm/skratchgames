@@ -24,13 +24,13 @@ const questions = [
     image:qimg1,
   },
   {
-    question: "Which Marvel character is known as the Sorcerer Supreme?",
+    question: "Who is the Sorcerer Supreme?",
     options: ["Doctor Strange", "Loki", "Wanda Maximoff"],
     correctAnswer: "Doctor Strange",
     image:qimg3,
   },
   {
-    question: "In Avengers: Endgame, who sacrifices themselves to obtain the Soul Stone?",
+    question: "Who sacrifices themselves to obtain the Soul Stone?",
     options: ["Tony Stark", "Natasha Romanoff", "Steve Rogers"],
     correctAnswer: "Natasha Romanoff",
     image:qimg3,
@@ -58,7 +58,7 @@ const questions = [
 function QuizzGame3() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(18000); // 3 minutes in seconds
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null); // Track selected option for each question
   const [answers, setAnswers] = useState([]);
@@ -196,8 +196,8 @@ function QuizzGame3() {
               <div className={styles.HeaderDiv}>
                 <div className={styles.PageCounterDiv}>
                   <div className={styles.exitBtnDiv}>
-                    <button className={styles.exitBtn}>
-                      <img src={x}  />
+                    <button className={styles.exitBtn} onClick={restartQuizHandler}>
+                      <img src={x} onClick={restartQuizHandler}/>
                     </button>
                   </div>
                   <div className={styles.TimerDiv}>

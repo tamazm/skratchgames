@@ -45,7 +45,6 @@
   width: 100%;
   font-size: 1.4rem;
   color: #fff;
-  padding-bottom: 2rem;
 }
 .img4 {
   width: 20rem;
@@ -116,7 +115,6 @@
 }
 .QuestionHeaderDiv {
   width: 15rem;
-  height: 13rem;
   border-radius: 2rem;
   display: flex;
   gap: 1rem;
