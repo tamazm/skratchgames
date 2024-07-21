@@ -4,6 +4,8 @@ import WheelOfFortune from "./components/WheelOfFortune/Main";
 import QuizzGame3 from "./components/QuizGame3";
 import "./App.css";
 
+import ScratchAndWin from "./components/ScratchAndWin/Main";
+
 function App() {
   return (
     <Router>
@@ -11,6 +13,7 @@ function App() {
         <Route path="/wheel-of-fortune" element={<WheelOfFortune />} />
         <Route path="/slots-machine" element={<SlotsMachine4 />} />
         <Route path="/quiz-game" element={<QuizzGame3 />} />
+        <Route path="/scratch-and-win" element={<ScratchAndWin />} />
       </Routes>
     </Router>
   );
