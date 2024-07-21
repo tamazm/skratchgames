@@ -21,7 +21,7 @@ function Result() {
         <>
           <WResult
             handlewin={() => {
-              window.location.reload()
+              window.location.reload();
             }}
           />
         </>
@@ -30,7 +30,7 @@ function Result() {
         <>
           <LResult
             handlelose={() => {
-              window.location.reload()
+              window.location.reload();
             }}
           />
         </>
