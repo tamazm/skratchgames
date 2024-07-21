@@ -89,6 +89,7 @@ function BallGame() {
           setPage={handlePage}
           accentColor="blue"
           preview={preview}
+          gradient="linear-gradient(to right, #64a8e1, #0473cf)"
         />
       )}
       {page === 2 && (
