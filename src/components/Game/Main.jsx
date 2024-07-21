@@ -9,10 +9,9 @@ import Confetti from "react-confetti";
 import "./Main.css";
 
 import background from "./assets/background.png";
-import Loader from "../Loader/Loader";
 
 function Main() {
-  const { confetti, loading, setLoading } = useMainContext();
+  const { page, confetti, loading, setLoading } = useMainContext();
 
   useEffect(() => {
     const images = Array.from(document.getElementById("main").getElementsByTagName("img"));
@@ -43,7 +42,8 @@ function Main() {
               justifyContent: "center",
               alignItems: "center",
               overflow: "hidden",
-              background: `url(${background})`,
+              background: "#181818",
+              // background: `url(${background})`,
               backgroundSize: "cover",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
@@ -51,7 +51,7 @@ function Main() {
           : {}
       }
     >
-      {loading && (
+      {/* {loading && (
         <motion.div
           initial={{ y: 0 }}
           animate={{ y: "-100%" }}
@@ -70,7 +70,7 @@ function Main() {
         >
           <Loader />
         </motion.div>
-      )}
+      )} */}
 
       <motion.div
         initial={{ opacity: 0 }}
@@ -85,7 +85,7 @@ function Main() {
         className="main"
       >
         <StartScreen />
-        <Form />
+        {page === 2 && <Form />}
         <Game />
         <Result />
 
