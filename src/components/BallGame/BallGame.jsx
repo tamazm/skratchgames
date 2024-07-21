@@ -12,6 +12,7 @@ import Ball6 from "../../assets/ballgame/ball (6).png";
 import WinningResult from "../winningResult";
 import Form from "../Form/Form";
 import Confetti from "react-confetti";
+import preview from "../../assets/fillerimg.png";
 
 const ballImages = [Ball1, Ball2, Ball3, Ball4, Ball5, Ball6];
 
@@ -56,7 +57,7 @@ function BallGame() {
   }
   return (
     <div className={styles.main}>
-      {page === 0 && <Form type="ballgame" setPage={handlePage} accentColor="blue" />}
+      {page === 0 && <Form type="ballgame" setPage={handlePage} accentColor="blue" preview={preview}/>}
       {page === 1 && (  
         <div className={styles.gameDiv}>
           <div className={styles.ballDiv1}>
