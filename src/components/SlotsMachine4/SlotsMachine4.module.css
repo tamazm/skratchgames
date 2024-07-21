@@ -20,6 +20,9 @@
 .slotDiv {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .slotCanvas {
   width: 35rem;
@@ -82,6 +85,12 @@
   .botDiv {
     width: 100%;
     padding: 4rem 0;
+  }
+  .slotCanvas{
+    width: 23rem;
+  }
+  .itemCont{
+    width: 75% !important;
   }
 }
 
