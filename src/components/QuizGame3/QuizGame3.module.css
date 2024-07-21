@@ -2,7 +2,7 @@
   width: 100%;
   min-height: 100vh;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   background: #272052;
   overflow-y: auto;
@@ -360,6 +360,7 @@
   .main {
     background-image: none;
     background-color: #272052;
+    justify-content: flex-start;
   }
   .coinImg {
     width: 1.9rem;

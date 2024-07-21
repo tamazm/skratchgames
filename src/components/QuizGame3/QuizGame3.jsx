@@ -157,18 +157,26 @@ function QuizzGame3() {
     setScore(correctCount);
     setQuizComplete(true);
   };
-  const handleEnd = ()=>{
-    restartQuizHandler()
+  const handleEnd = () => {
+    restartQuizHandler();
     setpage(0);
-    setScore(0)
-  }
+    setScore(0);
+  };
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
     <div className={styles.main}>
       {page === 0 && (
         <>
-          <Form type="quiz" preview={preview} setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
+          <Form
+            type="quiz"
+            preview={preview}
+            setPage={handlePage}
+            accentColor={"Red"}
+            gradient={
+              "linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)"
+            }
+          />
         </>
       )}
       {page === 1 && (
@@ -219,7 +227,8 @@ function QuizzGame3() {
                       </div>
                       <div className={styles.TimerDiv}>
                         <p className={styles.TimerCount}>
-                          {Math.floor(timeLeft / 60)}:{timeLeft % 60}
+                          {Math.floor(timeLeft / 60)}:
+                          {String(timeLeft % 60).padStart(2, "0")}
                         </p>
                       </div>
                       <div className={styles.coinDiv}>
