@@ -1,11 +1,18 @@
 import wheelof from "./WheelOfFortune/assets/wheelof.png";
 import fortune from "./WheelOfFortune/assets/fortune.png";
+import slot from "../assets/slotsmachine/slottitle.png";
 
 function Title({ type }) {
   return (
     <div
       className="title-texts"
-      style={{ padding: "1rem", display: "flex", flexDirection: "column", alignItems: "center", gap: "1.75rem" }}
+      style={{
+        padding: "1rem",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "1.75rem",
+      }}
     >
       {type === "form" && (
         <>
@@ -13,7 +20,11 @@ function Title({ type }) {
           <img style={{ width: "17.5rem" }} src={fortune} />
         </>
       )}
-
+      {type === "slot" && (
+        <>
+          <img style={{ width: "24rem" }} src={slot} />
+        </>
+      )}
     </div>
   );
 }
