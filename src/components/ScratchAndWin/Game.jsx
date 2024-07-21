@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import SmileyImgPreview from "./SmileyImgPreview";
 
 import { useMainContext } from "./MainContext";
@@ -51,16 +51,19 @@ function Game() {
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
   const threshold = isMobile ? 70 : 70;
 
+  const timeoutCalled = useRef(false); // Use useRef to keep track of whether the timeout has been called
+
   useEffect(() => {
     const countAtLeastTwo = progress.every((prog) => prog >= threshold);
 
-    console.log(progress)
-
-    if (countAtLeastTwo) {
-      showConfetti(true);
-      setPage(4);
+    if (countAtLeastTwo && !timeoutCalled.current) {
+      timeoutCalled.current = true; // Set the flag to true
+      setTimeout(() => {
+        showConfetti(true);
+        setPage(4);
+      }, 1250);
     }
-  }, [progress, setPage, threshold]);
+  }, [progress, setPage, threshold, showConfetti]);
 
   useEffect(() => {
     if (page === 3) {
@@ -127,9 +130,10 @@ function Game() {
             />
           ))}
         </div>
-        {progress.map(p => <p>{p}</p>)}
-        </div>
-
+        {progress.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
     </div>
   );
 }
