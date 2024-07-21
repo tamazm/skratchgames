@@ -1,13 +1,16 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import SmileyWText from "./assets/smile-with-text.png";
 
 function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpdate, animationType }) {
   const [scratchedPixels, setScratchedPixels] = useState(0);
+  const [totalPixels, setTotalPixels] = useState(0);
   const [loading, setLoading] = useState(true);
   const [currentPossibility, setCurrentPossibility] = useState("");
+  const [isScratching, setIsScratching] = useState(false);
 
   const nonPreviewBottomImgSrc = SmileyWText;
-  const canvasId = `scratch-card-${id}-${randomValue}`; // Combine id and randomValue for unique canvas ID
+  const canvasId = `scratch-card-${id}-${randomValue}`;
+  const progressRef = useRef(0);
 
   const loadImage = useCallback((src, callback, retryCount = 0) => {
     const image = new Image();
@@ -15,7 +18,6 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
     image.onload = () => callback(null, image);
     image.onerror = (err) => {
       if (retryCount < 3) {
-        // Retry up to 3 times
         setTimeout(() => loadImage(src, callback, retryCount + 1), 1000);
       } else {
         callback(err);
@@ -30,11 +32,8 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
       const context = canvas?.getContext("2d", { willReadFrequently: true });
 
       if (canvas && context) {
-        // Check if the device is mobile
         const isMobile = window.matchMedia("only screen and (max-width: 767px)").matches;
-
-        // Determine scaling factor based on device
-        const scaleFactor = isMobile && functional ? 8 : 4;
+        const scaleFactor = isMobile && functional ? 22.5 : 9;
 
         canvas.height = image.height / scaleFactor;
         canvas.width = image.width / scaleFactor;
@@ -60,6 +59,7 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
         }
 
         context.drawImage(image, offsetX, offsetY, drawWidth, drawHeight);
+        setTotalPixels(canvas.width * canvas.height);
       }
     },
     [canvasId]
@@ -83,18 +83,14 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
   }, [canvasId, loadImage, drawImageOnCanvas, nonPreviewBottomImgSrc]);
 
   useEffect(() => {
-    const loadImages = () => {
-      loadImage(nonPreviewBottomImgSrc, (err, img) => {
-        if (err) {
-          console.error("Failed to load image", err);
-        } else {
-          drawImageOnCanvas(img);
-        }
-        setLoading(false);
-      });
-    };
-
-    loadImages();
+    loadImage(nonPreviewBottomImgSrc, (err, img) => {
+      if (err) {
+        console.error("Failed to load image", err);
+      } else {
+        drawImageOnCanvas(img);
+      }
+      setLoading(false);
+    });
   }, [loadImage, drawImageOnCanvas, nonPreviewBottomImgSrc]);
 
   const scratch = (x, y) => {
@@ -107,59 +103,66 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
       context.arc(x, y, 40, 0, 2 * Math.PI);
       context.fill();
 
-      // Update scratched pixels count
-      const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-      let scratchedCount = 0;
+      requestAnimationFrame(() => {
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        let scratchedCount = 0;
 
-      for (let i = 0; i < imageData.data.length; i += 4) {
-        if (imageData.data[i + 3] === 0) {
-          scratchedCount++;
+        for (let i = 0; i < imageData.data.length; i += 4) {
+          if (imageData.data[i + 3] === 0) {
+            scratchedCount++;
+          }
         }
-      }
 
-      setScratchedPixels(scratchedCount);
+        setScratchedPixels(scratchedCount);
+        const percentageScratched = (scratchedCount / totalPixels) * 100;
+        progressRef.current = percentageScratched;
+
+        // Call `onScratchUpdate` immediately with updated progress
+        onScratchUpdate(percentageScratched >= 33, progressRef.current);
+      });
     }
   };
 
-  const init = useCallback(() => {
-    let isDragging = false;
-    const handlePointerDown = (event) => {
-      if (functional) {
-        isDragging = true;
-        const canvas = document.getElementById(canvasId);
-        if (canvas) {
-          const rect = canvas.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-
-          // Check if the pointer is within the canvas bounds
-          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-            scratch(x, y);
-          }
+  const handlePointerDown = (event) => {
+    if (functional) {
+      setIsScratching(true);
+      const canvas = document.getElementById(canvasId);
+      if (canvas) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+          scratch(x, y);
         }
       }
-    };
+    }
+  };
 
-    const handlePointerMove = (event) => {
-      if (isDragging) {
-        const canvas = document.getElementById(canvasId);
-        if (canvas) {
-          const rect = canvas.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-
-          // Check if the pointer is within the canvas bounds
-          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-            scratch(x, y);
-          }
+  const handlePointerMove = (event) => {
+    if (isScratching) {
+      const canvas = document.getElementById(canvasId);
+      if (canvas) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+          scratch(x, y);
         }
       }
-    };
+    }
+  };
 
-    const handlePointerUp = () => {
-      isDragging = false;
-    };
+  const handlePointerUp = () => {
+    if (isScratching) {
+      setIsScratching(false);
+      const percentageScratched = progressRef.current;
+      if (percentageScratched >= 33) {
+        onUpdate(randomValue);
+      }
+    }
+  };
 
+  useEffect(() => {
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("pointermove", handlePointerMove);
     document.addEventListener("pointerup", handlePointerUp);
@@ -169,46 +172,11 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
       document.removeEventListener("pointermove", handlePointerMove);
       document.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [scratch, canvasId, functional]);
-
-  useEffect(() => {
-    const handleEndScratch = () => {
-      const canvas = document.getElementById(canvasId);
-      if (canvas) {
-        const canvasWidth = canvas.width;
-        const canvasHeight = canvas.height;
-        const totalPixels = canvasWidth * canvasHeight;
-
-        const percentageScratched = (scratchedPixels / totalPixels) * 100;
-
-        if (percentageScratched >= 33) {
-          onUpdate(randomValue);
-          onScratchUpdate(true, percentageScratched);
-        } else {
-          onScratchUpdate(false, percentageScratched);
-        }
-      }
-    };
-
-    const canvas = document.getElementById(canvasId);
-    if (canvas) {
-      canvas.addEventListener("mouseup", handleEndScratch);
-      canvas.addEventListener("touchend", handleEndScratch);
-
-      return () => {
-        canvas.removeEventListener("mouseup", handleEndScratch);
-        canvas.removeEventListener("touchend", handleEndScratch);
-      };
-    }
-  }, [scratchedPixels, onUpdate, onScratchUpdate, randomValue, canvasId]);
+  }, [isScratching]);
 
   useEffect(() => {
     setCurrentPossibility(randomValue);
   }, [randomValue]);
-
-  useEffect(() => {
-    init();
-  }, [init]);
 
   useEffect(() => {
     if (!functional) {
@@ -217,20 +185,18 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
 
       if (canvas && context) {
         let swipePath = [];
-        const step = 10; // Number of pixels per step
+        const step = 10;
 
         if (animationType === 1) {
-          // Diagonal from top-left to bottom-right
           for (let i = 0; i < Math.max(canvas.width, canvas.height); i += step) {
             swipePath.push({ x: i, y: i });
           }
         } else if (animationType === 2) {
-          // Spiral
           const centerX = canvas.width / 2;
           const centerY = canvas.height / 2;
           let angle = 0;
           let radius = 0;
-          const spiralSpeed = 1; // Adjust the speed of the spiral
+          const spiralSpeed = 1;
 
           while (radius < Math.max(canvas.width, canvas.height)) {
             const x = centerX + radius * Math.cos(angle);
@@ -240,7 +206,6 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
             radius += step / 20;
           }
         } else if (animationType === 3) {
-          // Horizontal lines
           for (let y = 0; y < canvas.height; y += step) {
             for (let x = 0; x < canvas.width; x += step) {
               swipePath.push({ x, y });
@@ -256,9 +221,8 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
 
           if (currentStep >= swipePath.length) {
             clearInterval(interval);
-            // resetCanvas()
           }
-        }, 25); // Adjust speed for smoother effect
+        }, 25);
 
         return () => clearInterval(interval);
       }
@@ -271,6 +235,7 @@ function SmileyImgPreview({ id, functional, randomValue, onUpdate, onScratchUpda
         className="absolute"
         style={{
           userSelect: "none",
+          fontSize: "1.25rem",
         }}
       >
         {loading ? "Loading..." : currentPossibility}
