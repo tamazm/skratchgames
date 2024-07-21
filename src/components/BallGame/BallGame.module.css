@@ -6,6 +6,8 @@
   justify-content: center;
   align-items: center;
   background-color: #403baa;
+  overflow: hidden;
+  position: relative;
 }
 
 .gameDiv {
@@ -16,6 +18,7 @@
   justify-content: center;
   cursor: url("../../assets/ballgame/cursor1.png"), auto;
 }
+
 .popDiv {
   position: absolute;
   width: 100%;
@@ -59,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3rem;
+  gap: 1rem;
   flex-direction: column;
 }
 .enterBtn {
@@ -73,7 +76,7 @@
 }
 .glass1 {
   position: absolute;
-  width: 17rem;
+  width: 16rem;
   top: 6rem;
 }
 
@@ -81,7 +84,7 @@
   position: absolute;
   width: 4rem;
   bottom: 9rem;
-  right: 3.6rem;
+  right: 3.4rem;
 }
 .ballDiv {
   width: 60%;
@@ -104,8 +107,8 @@
 .switch1 {
   position: absolute;
   width: 5rem;
-  top: 25rem;
-  left: 4.15rem;
+  top: 24rem;
+  left: 3.9rem;
   cursor: pointer;
   transition: transform 0.5s ease-in-out;
   transform: rotate(0deg);
@@ -113,7 +116,7 @@
 }
 
 .gamei {
-  width: 20rem;
+  width: 19rem;
 }
 
 @keyframes rotateAnimation {

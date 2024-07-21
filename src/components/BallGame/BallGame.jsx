@@ -27,7 +27,7 @@ function BallGame() {
   const [animationEnded, setAnimationEnded] = useState(true);
   const [selectedBall, setSelectedBall] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [page, setpage] = useState(2);
+  const [page, setpage] = useState(0);
 
   const handlePage = () => {
     setpage(page + 1);
@@ -152,7 +152,7 @@ function BallGame() {
       {showPopup && (
         <>
           <WinningResult handlewin={handleEnd} />
-          <Confetti style={{ zIndex: "9999999",width:'100%' }} />
+          <Confetti style={{ zIndex: "9999999",backgroundRepeat:'repeat'}} />
         </>
       )}
     </div>
