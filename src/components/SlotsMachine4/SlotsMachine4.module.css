@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: flex;
   gap: 2rem;
-  padding: 4rem 0;
+  padding: 2rem 0;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -27,6 +27,11 @@
 }
 .slotCanvas {
   width: 35rem;
+  position: relative;
+  z-index: 999;
+}
+.slotCanvas1 {
+  width: 30rem;
   position: relative;
   z-index: 999;
 }
@@ -73,11 +78,16 @@
   text-align: center;
   flex-direction: column;
 }
-
+.title2{
+  width: 50%;
+}
 @media only screen and (max-width: 800px) {
   .resultDiv {
     width: 100%;
     height: 100%;
+    width: 90%;
+  }
+  .title2{
     width: 90%;
   }
   .topDiv {
@@ -88,6 +98,9 @@
     padding: 4rem 0;
   }
   .slotCanvas{
+    width: 23rem;
+  }
+  .slotCanvas1{
     width: 23rem;
   }
   .itemCont{
@@ -138,6 +151,9 @@
 }
 .item {
   width: 7rem;
+}
+.titleImg{
+  width: 25rem;
 }
 .SBtn {
   background: linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%);
@@ -206,4 +222,9 @@
   animation: moveDown 1s forwards infinite;
   animation-delay: 0.6s;
   filter: blur(5px);
+}
+@media screen and (max-width:800px) {
+  .titleImg{
+    width: 20rem;
+  }
 }

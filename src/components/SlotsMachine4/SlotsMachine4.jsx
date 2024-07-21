@@ -76,8 +76,8 @@ function SlotsMachine4() {
       )}
       {page === 0 && (
         <>
-        <img src={title} style={{width:"25rem"}} />
-          <h2 style={{fontFamily:'cb',textAlign:'center',width:'50%'}}>
+        <img src={title} className={styles.titleImg} />
+          <h2 style={{fontFamily:'cb',textAlign:'center'}} className={styles.title2}>
             Here at Skratchville we help organizations like yours generate new
             leads, create innovative customer and staff incentives, all whilst
             saving both time and money!
@@ -112,7 +112,7 @@ function SlotsMachine4() {
                 <img src={item3} className={styles.item} />
               </div>
             </div>
-            <img src={Scanvas} alt="canvas" className={styles.slotCanvas} style={{width:'30rem'}}/>
+            <img src={Scanvas} alt="canvas" className={styles.slotCanvas1}/>
             <img src={Sbg} className={styles.Sbg} />
           </div>
           <button
