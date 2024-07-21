@@ -49,8 +49,7 @@ function Game() {
   }, [scratchedStatuses, values]);
 
   useEffect(() => {
-    const countAtLeastTwo = progress.every((prog) => prog >= 0.2);
-    console.log(progress);
+    const countAtLeastTwo = progress.every((prog) => prog >= 0.75);
 
     if (countAtLeastTwo) {
       showConfetti(true);
