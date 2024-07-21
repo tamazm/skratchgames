@@ -11,7 +11,7 @@ import Confetti from "react-confetti";
 import title from "../../assets/slotsmachine/slottitle.png";
 import WinningResult from "../winningResult";
 import LosingResult from "../losingResult";
-import preview  from "../../assets/slotsmachine/pre.png";
+import preview from "../../assets/slotsmachine/pre.png";
 
 function SlotsMachine4() {
   const [animate, setAnimate] = useState(false);
@@ -20,7 +20,7 @@ function SlotsMachine4() {
   const [losing, setlosing] = useState(false);
   const imageSources = [item1, item2, item3];
   const [page, setpage] = useState(0);
-  const [confetti, setconfetti]=useState(false)
+  const [confetti, setconfetti] = useState(false);
 
   const animateDivs = () => {
     setAnimate(true);
@@ -32,14 +32,8 @@ function SlotsMachine4() {
     }, 500);
   };
   const handlewinning = () => {
-    if (randomImage === randomImage2 && randomImage2 === randomImage3) {
-      setwinning(true);
-      setconfetti(true)
-    } else {
-      setlosing(true);
-      setconfetti(true)
-    }
-    console.log(confetti)
+    setwinning(true);
+    setconfetti(true);
   };
   const handleSpin = () => {
     animateDivs();
@@ -67,58 +61,49 @@ function SlotsMachine4() {
         <WinningResult
           handlewin={() => {
             setwinning(false);
-            setpage(0)
+            setpage(0);
+            setconfetti(false);
           }}
         />
       )}
-      {losing && (
-        <LosingResult
-          handlelose={() => {
-            setlosing(false);
-            setpage(0)
-          }}
+      {confetti && (
+        <Confetti
+          style={{ zIndex: "9999999", width: "100%", height: "100%" }}
         />
       )}
-      {confetti && <Confetti style={{ zIndex: "9999999",width:"100%",height:'100vh' }} />}
       {page === 0 && (
         <>
-        <img src={title} className={styles.titleImg} />
-          <h2 style={{fontFamily:'cb',textAlign:'center'}} className={styles.title2}>
+          <img src={title} className={styles.titleImg} />
+          <h2
+            style={{ fontFamily: "cb", textAlign: "center" }}
+            className={styles.title2}
+          >
             Here at Skratchville we help organizations like yours generate new
             leads, create innovative customer and staff incentives, all whilst
             saving both time and money!
           </h2>
           <div className={styles.slotDiv}>
-            <div className={styles.itemCont} style={{ bottom: "80%",width:'75%' }}>
-              <div
-                className={`${styles.itemDiv} ${
-                   styles.animate33 
-                }`}
-              >
+            <div
+              className={styles.itemCont}
+              style={{ bottom: "80%", width: "75%" }}
+            >
+              <div className={`${styles.itemDiv} ${styles.animate33}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                   styles.animate44
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${styles.animate44}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                   styles.animate55
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${styles.animate55}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
               </div>
             </div>
-            <img src={Scanvas} alt="canvas" className={styles.slotCanvas1}/>
+            <img src={Scanvas} alt="canvas" className={styles.slotCanvas1} />
             <img src={Sbg} className={styles.Sbg} />
           </div>
           <button
@@ -132,12 +117,19 @@ function SlotsMachine4() {
       )}
       {page === 1 && (
         <>
-          <Form type="slot" preview={preview} setPage={handlePage} accentColor={"Red"} gradient={'linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)'}/>
+          <Form
+            type="slot"
+            preview={preview}
+            setPage={handlePage}
+            accentColor={"Red"}
+            gradient={
+              "linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)"
+            }
+          />
         </>
       )}
       {page === 2 && (
         <>
-        
           <div className={styles.slotDiv}>
             <div className={styles.itemCont}>
               <div
