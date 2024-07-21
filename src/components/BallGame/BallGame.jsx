@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./BallGame.module.css";
 import gameI from "../../assets/ballgame/gamei.png";
 import switch1 from "../../assets/ballgame/switch.png";
@@ -13,26 +13,30 @@ import WinningResult from "../winningResult";
 import Form from "../Form/Form";
 import Confetti from "react-confetti";
 import preview from "../../assets/fillerimg.png";
+import Title from "../Title";
+import bgimage from "../../assets/ballgame/bgilus.png";
+import star from "../../assets/ballgame/stari.png";
+import prizeimg from "../../assets/ballgame/prizeimg.png";
 
 const ballImages = [Ball1, Ball2, Ball3, Ball4, Ball5, Ball6];
 
 function BallGame() {
   const [rotate, setRotate] = useState(false);
   const [shaking, setShaking] = useState(false);
+  const [prize, setprize] = useState(false);
   const [animationEnded, setAnimationEnded] = useState(true);
   const [selectedBall, setSelectedBall] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [page, setpage] = useState(0);
+  const [page, setpage] = useState(2);
 
   const handlePage = () => {
     setpage(page + 1);
   };
+
   const handleClick = () => {
     if (!animationEnded) return; // Prevent multiple clicks while animation is playing
-
     setRotate(true);
     setAnimationEnded(false);
-
     // After rotate animation ends, start shaking animation
     setTimeout(() => {
       setShaking(true);
@@ -46,19 +50,48 @@ function BallGame() {
       setRotate(false);
       setShaking(false);
       setAnimationEnded(true);
-
-      setShowPopup(true);
+      setprize(true);
+      setTimeout(() => {
+        setShowPopup(true);
+      }, 2000); // Adjust timing to match total animation duration
     }, 3000); // Adjust timing to match total animation duration
   };
-  const handleEnd = () =>{
+
+  const handleEnd = () => {
     setpage(0);
     setShowPopup(false);
-    setSelectedBall(null)
-  }
+    setSelectedBall(null);
+    setprize(false)
+  };
+
   return (
     <div className={styles.main}>
-      {page === 0 && <Form type="ballgame" setPage={handlePage} accentColor="blue" preview={preview}/>}
-      {page === 1 && (  
+      {page === 0 && (
+        <div className={styles.page0}>
+          <Title type="ballgame" />
+          <h2
+            style={{ fontFamily: "cb", textAlign: "center" }}
+            className={styles.title2}
+          >
+            Here at Skratchville we help organizations like yours generate new
+            leads, create innovative customer and staff incentives, all whilst
+            saving both time and money!
+          </h2>
+          <img src={bgimage} style={{ width: "15rem" }} />
+          <button className={styles.enterBtn} onClick={handlePage}>
+            Enter Now
+          </button>
+        </div>
+      )}
+      {page === 1 && (
+        <Form
+          type="ballgame"
+          setPage={handlePage}
+          accentColor="blue"
+          preview={preview}
+        />
+      )}
+      {page === 2 && (
         <div className={styles.gameDiv}>
           <div className={styles.ballDiv1}>
             <img
@@ -97,12 +130,31 @@ function BallGame() {
             className={`${styles.switch1} ${rotate ? styles.animate : ""}`}
             onClick={handleClick}
           />
+          <button className={styles.leverBtn} onClick={handleClick}>Play</button>
           {selectedBall && <img src={selectedBall} className={styles.Ball1} />}
         </div>
       )}
-      {showPopup && (<><WinningResult handlewin={handleEnd}/> 
-      <Confetti style={{ zIndex: "9999999"}}/>
-      </>)}
+      {prize && (
+        <div className={styles.popDiv}>
+          <div className={styles.popCont}>
+            <h1>You Won!!</h1>
+            <img src={prizeimg} style={{width:'6rem'}}/>
+            <div className={styles.starDiv}>
+              <img src={star} style={{ width: "4rem" }} />
+              <img
+                src={star}
+                style={{ width: "4rem", transform: "scaleX(-1)" }}
+              />
+            </div>
+          </div>
+        </div>
+      )}
+      {showPopup && (
+        <>
+          <WinningResult handlewin={handleEnd} />
+          <Confetti style={{ zIndex: "9999999",width:'100%' }} />
+        </>
+      )}
     </div>
   );
 }

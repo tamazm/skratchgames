@@ -6,7 +6,10 @@
   font-family: "cb";
   src: url('./assets/cb.ttf');
 }
-
+@font-face {
+  font-family: "rb";
+  src: url('./assets/rb.otf');
+}
 * {
   padding: 0;
   margin: 0;

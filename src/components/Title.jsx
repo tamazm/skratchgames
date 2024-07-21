@@ -15,10 +15,26 @@ function Title({ type, bigger }) {
       }}
     >
       {type === "quiz" && (
-        <h1 style={{color:'Red',fontSize:'3rem',fontFamily:'cb'}}>Quiz</h1>
+        <h1 style={{ color: "Red", fontSize: "3rem", fontFamily: "cb" }}>
+          Quiz
+        </h1>
       )}
       {type === "ballgame" && (
-        <h1 style={{color:'#FEB62A',fontSize:'3rem',fontFamily:'cb'}}>Prize Machine</h1>
+        <h1
+          style={{
+            background:
+              "linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%)",
+            WebkitBackgroundClip: "text" /* For WebKit browsers */,
+            backgroundClip: "text" /* Standard property for other browsers */,
+            color: "transparent" /* Ensure the text itself is transparent */,
+            fontSize: "3rem",
+            fontFamily: "rb" /* Ensure 'cb' is a valid font-family */,
+            fontWeight: "bold" /* Add font-weight if needed */,
+            textAlign:'center'
+          }}
+        >
+          Prize Machine
+        </h1>
       )}
       {type === "form" && (
         <>
