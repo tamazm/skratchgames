@@ -48,12 +48,14 @@ function Game() {
     }
   }, [scratchedStatuses, values]);
 
-  const isMobile = window.innerWidth <= 768;
-  const threshold = isMobile ? 100 : 70;
-  
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  const threshold = isMobile ? 70 : 70;
+
   useEffect(() => {
     const countAtLeastTwo = progress.every((prog) => prog >= threshold);
-  
+
+    console.log(progress)
+
     if (countAtLeastTwo) {
       showConfetti(true);
       setPage(4);
