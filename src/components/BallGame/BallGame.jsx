@@ -15,23 +15,24 @@ import Confetti from "react-confetti";
 import preview from "../../assets/fillerimg.png";
 import Title from "../Title";
 import bgimage from "../../assets/ballgame/bgilus.png";
+import star from "../../assets/ballgame/stari.png";
+import prizeimg from "../../assets/ballgame/prizeimg.png";
 
 const ballImages = [Ball1, Ball2, Ball3, Ball4, Ball5, Ball6];
 
 function BallGame() {
   const [rotate, setRotate] = useState(false);
   const [shaking, setShaking] = useState(false);
-  const [shaking11, setShaking11] = useState(true);
+  const [prize, setprize] = useState(false);
   const [animationEnded, setAnimationEnded] = useState(true);
   const [selectedBall, setSelectedBall] = useState(null);
-  const [selectedBall1, setSelectedBall1] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const [page, setpage] = useState(0);
-
 
   const handlePage = () => {
     setpage(page + 1);
   };
+
   const handleClick = () => {
     if (!animationEnded) return; // Prevent multiple clicks while animation is playing
     setRotate(true);
@@ -49,7 +50,10 @@ function BallGame() {
       setRotate(false);
       setShaking(false);
       setAnimationEnded(true);
-      setShowPopup(true);
+      setprize(true);
+      setTimeout(() => {
+        setShowPopup(true);
+      }, 2000); // Adjust timing to match total animation duration
     }, 3000); // Adjust timing to match total animation duration
   };
 
@@ -57,7 +61,9 @@ function BallGame() {
     setpage(0);
     setShowPopup(false);
     setSelectedBall(null);
+    setprize(false)
   };
+
   return (
     <div className={styles.main}>
       {page === 0 && (
@@ -71,8 +77,10 @@ function BallGame() {
             leads, create innovative customer and staff incentives, all whilst
             saving both time and money!
           </h2>
-          <img src={bgimage} style={{width:'15rem'}} />
-          <button className={styles.enterBtn} onClick={handlePage}>Enter Now</button>
+          <img src={bgimage} style={{ width: "15rem" }} />
+          <button className={styles.enterBtn} onClick={handlePage}>
+            Enter Now
+          </button>
         </div>
       )}
       {page === 1 && (
@@ -123,6 +131,21 @@ function BallGame() {
             onClick={handleClick}
           />
           {selectedBall && <img src={selectedBall} className={styles.Ball1} />}
+        </div>
+      )}
+      {prize && (
+        <div className={styles.popDiv}>
+          <div className={styles.popCont}>
+            <h1>You Won!!</h1>
+            <img src={prizeimg} style={{width:'6rem'}}/>
+            <div className={styles.starDiv}>
+              <img src={star} style={{ width: "4rem" }} />
+              <img
+                src={star}
+                style={{ width: "4rem", transform: "scaleX(-1)" }}
+              />
+            </div>
+          </div>
         </div>
       )}
       {showPopup && (
