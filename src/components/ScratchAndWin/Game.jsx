@@ -59,21 +59,21 @@ function Game() {
   }, [progress, setPage]);
 
   useEffect(() => {
+    if (page === 3) {
+      window.scrollTo(0, 0);
+    }
+
     const handleTouchMove = (event) => {
       event.preventDefault();
     };
 
     if (page === 3) {
       // Check if the component is visible
-      window.scrollTo(0, 0);
-
       window.addEventListener("touchmove", handleTouchMove, { passive: false });
     }
 
     return () => {
       if (page === 3) {
-        window.scrollTo(0, 0);
-
         window.removeEventListener("touchmove", handleTouchMove);
       }
     };
