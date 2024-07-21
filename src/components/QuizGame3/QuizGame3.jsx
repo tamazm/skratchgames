@@ -157,7 +157,10 @@ function QuizzGame3() {
     setScore(correctCount);
     setQuizComplete(true);
   };
-
+  const handleEnd = ()=>{
+    setpage(0);
+    setScore(0)
+  }
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
@@ -309,7 +312,7 @@ function QuizzGame3() {
                     </p>
                     <button
                       className={styles.RestartButton}
-                      onClick={()=>{setpage(0)}}
+                      onClick={handleEnd}
                     >
                       Restart Quiz
                     </button>
