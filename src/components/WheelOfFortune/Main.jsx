@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import StartScreen from "./StartScreen";
 import Result from "./Result";
 import Game from "./Game";
@@ -10,6 +10,7 @@ import "./Main.css";
 
 import preview from "./assets/mockup.png";
 import background from "./assets/background.png";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function Main() {
   const { page, setPage, confetti, loading, setLoading } = useMainContext();
@@ -33,26 +34,27 @@ function Main() {
   }, [setLoading]);
 
   return (
-    <div
-      style={
-        loading
-          ? {
-              width: "100vw",
-              height: "100vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              overflow: "hidden",
-              background: "#181818",
-              // background: `url(${background})`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-            }
-          : {}
-      }
-    >
-      {/* {loading && (
+    <HelmetProvider>
+      <div
+        style={
+          loading
+            ? {
+                width: "100vw",
+                height: "100vh",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                overflow: "hidden",
+                background: "#181818",
+                // background: `url(${background})`,
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+              }
+            : {}
+        }
+      >
+        {/* {loading && (
         <motion.div
           initial={{ y: 0 }}
           animate={{ y: "-100%" }}
@@ -72,27 +74,35 @@ function Main() {
           <Loader />
         </motion.div>
       )} */}
+        <Helmet>
+          <title>Skratchville Games - Wheel Of Fortune</title>
+          <meta property="og:image" content={preview} />
+          <meta property="og:title" content="Skratchville Games - Wheel Of Fortune Demo" />
+          <meta property="og:description" content="Wheel Of Fortune Demo" />
+          <meta property="og:url" content="https://skratchville.com" />
+        </Helmet>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: loading ? 0 : 1 }}
-        transition={{ duration: 0.5 }}
-        style={{
-          background: `url(${background})`,
-          opacity: loading ? 0 : "1",
-          position: "relative",
-        }}
-        id="main"
-        className="main"
-      >
-        <StartScreen />
-        {page === 2 && <Form preview={preview} setPage={setPage} />}
-        <Game />
-        <Result />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: loading ? 0 : 1 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            background: `url(${background})`,
+            opacity: loading ? 0 : "1",
+            position: "relative",
+          }}
+          id="main"
+          className="main"
+        >
+          <StartScreen />
+          {page === 2 && <Form preview={preview} setPage={setPage} />}
+          <Game />
+          <Result />
 
-        {confetti && <Confetti style={{ zIndex: "9999999" }} />}
-      </motion.div>
-    </div>
+          {confetti && <Confetti style={{ zIndex: "9999999" }} />}
+        </motion.div>
+      </div>
+    </HelmetProvider>
   );
 }
 
