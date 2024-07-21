@@ -48,14 +48,17 @@ function Game() {
     }
   }, [scratchedStatuses, values]);
 
+  const isMobile = window.innerWidth <= 768;
+  const threshold = isMobile ? 100 : 70;
+  
   useEffect(() => {
-    const countAtLeastTwo = progress.every((prog) => prog >= 1);
-
+    const countAtLeastTwo = progress.every((prog) => prog >= threshold);
+  
     if (countAtLeastTwo) {
       showConfetti(true);
       setPage(4);
     }
-  }, [progress, setPage]);
+  }, [progress, setPage, threshold]);
 
   useEffect(() => {
     if (page === 3) {
