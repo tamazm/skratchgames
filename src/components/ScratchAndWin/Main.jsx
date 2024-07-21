@@ -64,7 +64,15 @@ function Main() {
         className="main"
       >
         <StartScreen />
-        {page === 2 && <Form type="scratch" gradient="linear-gradient(to right, #64a8e1, #0473cf)" accentColor="#348ed7" preview={background} setPage={setPage} />}
+        {page === 2 && (
+          <Form
+            type="scratch"
+            gradient="linear-gradient(to right, #64a8e1, #0473cf)"
+            accentColor="#348ed7"
+            preview={background}
+            setPage={setPage}
+          />
+        )}
         <Game />
         <Result />
 

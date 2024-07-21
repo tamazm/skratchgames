@@ -15,7 +15,7 @@ function StartScreen() {
   };
 
   const handleScratchUpdate = (index, status, percentage) => {
-    console.log(`Smiley ${index} scratched: ${status}, ${percentage}%`);
+    // console.log(`Smiley ${index} scratched: ${status}, ${percentage}%`);
   };
 
   return (
@@ -36,7 +36,7 @@ function StartScreen() {
       </h6>
 
       <div
-        className="md:scale-100 scale-[0.575] md:mt-4 -mt-8 md:mb-4 -mb-8 mx-auto smaller:scale-[0.45]"
+        className="md:scale-100 scale-[0.575] md:mt-12 -mt-8 md:mb-12 -mb-8 mx-auto smaller:scale-[0.45]"
         style={{
           borderRadius: "12px",
           padding: "4.5rem 2.5rem",
