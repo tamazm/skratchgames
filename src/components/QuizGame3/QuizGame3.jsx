@@ -4,6 +4,7 @@ import ilusImg from "../../assets/quizz/ilus1.png";
 import qimg from "../../assets/quizz/qimg.jpg";
 import qimg1 from "../../assets/quizz/qimg1.jpg";
 import qimg2 from "../../assets/quizz/qimg2.jpg";
+import qimg3 from "../../assets/quizz/qimg3.jpg";
 
 import x from "../../assets/quizz/x.png";
 import img6 from "../../assets/quizz/coin1.png";
@@ -26,11 +27,13 @@ const questions = [
     question: "Which Marvel character is known as the Sorcerer Supreme?",
     options: ["Doctor Strange", "Loki", "Wanda Maximoff"],
     correctAnswer: "Doctor Strange",
+    image:qimg3,
   },
   {
     question: "In Avengers: Endgame, who sacrifices themselves to obtain the Soul Stone?",
     options: ["Tony Stark", "Natasha Romanoff", "Steve Rogers"],
     correctAnswer: "Natasha Romanoff",
+    image:qimg3,
   },
   {
     question: "Who is Rocket's partner?",
@@ -43,11 +46,13 @@ const questions = [
     question: "What is the name of Black Panther’s homeland?",
     options: ["Wakanda", "Atlantis", "Asgard"],
     correctAnswer: "Wakanda",
+    image:qimg3,
   },
   {
     question: "Who is the ruler of Asgard in the Marvel Cinematic Universe?",
     options: ["Odin","Loki","Thor"],
     correctAnswer: "Odin",
+    image:qimg3,
   },
 ];
 function QuizzGame3() {
