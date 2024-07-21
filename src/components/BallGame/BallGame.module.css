@@ -12,6 +12,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
   cursor: url("../../assets/ballgame/cursor1.png"), auto;
 }
@@ -40,6 +41,12 @@
   flex-direction: column;
   color: #fff;
   position: relative;
+}
+.leverBtn{
+  background-color: red;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: #fff;
 }
 .starDiv {
   position: absolute;
@@ -73,13 +80,14 @@
 .Ball1 {
   position: absolute;
   width: 4rem;
-  bottom: 5rem;
+  bottom: 9rem;
   right: 3.6rem;
 }
 .ballDiv {
   width: 60%;
   position: absolute;
   display: flex;
+  top: 16rem;
   align-items: center;
   justify-content: space-around;
   z-index: 1;

@@ -27,7 +27,7 @@ function BallGame() {
   const [animationEnded, setAnimationEnded] = useState(true);
   const [selectedBall, setSelectedBall] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [page, setpage] = useState(0);
+  const [page, setpage] = useState(2);
 
   const handlePage = () => {
     setpage(page + 1);
@@ -130,6 +130,7 @@ function BallGame() {
             className={`${styles.switch1} ${rotate ? styles.animate : ""}`}
             onClick={handleClick}
           />
+          <button className={styles.leverBtn} onClick={handleClick}>Play</button>
           {selectedBall && <img src={selectedBall} className={styles.Ball1} />}
         </div>
       )}
