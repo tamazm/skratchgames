@@ -21,9 +21,7 @@ function Result() {
         <>
           <WResult
             handlewin={() => {
-              showConfetti(false);
-              setPage(1);
-              window.location.relad
+              window.location.reload()
             }}
           />
         </>
@@ -32,9 +30,7 @@ function Result() {
         <>
           <LResult
             handlelose={() => {
-              showConfetti(false);
-              setPage(1);
-              window.location.relad
+              window.location.reload()
             }}
           />
         </>

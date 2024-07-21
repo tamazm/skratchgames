@@ -48,14 +48,19 @@ function Game() {
     }
   }, [scratchedStatuses, values]);
 
+  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+  const threshold = isMobile ? 70 : 70;
+
   useEffect(() => {
-    const countAtLeastTwo = progress.every((prog) => prog >= 0.75);
+    const countAtLeastTwo = progress.every((prog) => prog >= threshold);
+
+    console.log(progress)
 
     if (countAtLeastTwo) {
       showConfetti(true);
       setPage(4);
     }
-  }, [progress, setPage]);
+  }, [progress, setPage, threshold]);
 
   useEffect(() => {
     if (page === 3) {
@@ -122,7 +127,9 @@ function Game() {
             />
           ))}
         </div>
-      </div>
+        {progress.map(p => <p>{p}</p>)}
+        </div>
+
     </div>
   );
 }
