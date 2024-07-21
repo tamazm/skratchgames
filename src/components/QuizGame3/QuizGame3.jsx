@@ -58,7 +58,7 @@ const questions = [
 function QuizzGame3() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [quizComplete, setQuizComplete] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(80000); // 3 minutes in seconds
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes in seconds
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null); // Track selected option for each question
   const [answers, setAnswers] = useState([]);
