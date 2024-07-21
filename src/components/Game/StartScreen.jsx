@@ -6,7 +6,7 @@ function StartScreen() {
   const { page, setPage } = useMainContext();
 
   return (
-    <div className="container">
+    <div style={{ display: page === 1 ? "flex" : "none" }} className="container">
       <div>
         <Title />
 

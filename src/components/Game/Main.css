@@ -7,14 +7,13 @@
   width: 100vw;
   min-height: 100vh;
 
-  background: url(./assets/background.png) no-repeat center;
-  background: "linear-gradient(to right, #970631, #5d001c)";
-  background-size: cover;
-
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
   padding: 4rem 1rem;
   padding-top: 3rem;
   margin: 0;
-  animation: backgroundAppear 1.5s ease-out forwards;
+  /* animation: backgroundAppear 1.5s ease-out forwards; */
 }
 
 @keyframes backgroundAppear {

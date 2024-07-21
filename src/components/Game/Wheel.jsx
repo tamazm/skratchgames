@@ -31,7 +31,7 @@ const Wheel = ({ buttonOnClick, buttonContent = "PLAY", functional }) => {
     // Use requestAnimationFrame to apply the new transition
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        const delay = functional ? 0 : 2000;
+        const delay = functional ? 0 : 4000;
         const duration = functional ? 6 : 2.25;
         const easing = functional ? "cubic-bezier(0.440, -0.205, 0.000, 1)" : "ease";
 

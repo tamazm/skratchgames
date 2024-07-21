@@ -3,8 +3,10 @@ import Title from "./Title";
 import Wheel from "./Wheel";
 
 function Game() {
+  const { page } = useMainContext();
+
   return (
-    <div className="container">
+    <div style={{ display: page === 3 ? "flex" : "none" }} className="container">
       <Title />
       <Wheel buttonContent="SPIN" functional={true} />
     </div>

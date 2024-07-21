@@ -7,10 +7,10 @@ import Popup from "reactjs-popup";
 import Title from "../Game/Title";
 
 function Form({ accentColor = "#c6aa60", gradient = "linear-gradient(to right, #ad8214, #f4da53)" }) {
-  const { setPage } = useMainContext();
+  const { page, setPage } = useMainContext();
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <div style={{ display: page === 2 ? "flex" : "none", flexDirection: "column", gap: "1rem" }}>
       <Title />
 
       <motion.div
