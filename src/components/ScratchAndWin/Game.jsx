@@ -48,13 +48,10 @@ function Game() {
     }
   }, [scratchedStatuses, values]);
 
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-  const threshold = isMobile ? 70 : 70;
-
   const timeoutCalled = useRef(false); // Use useRef to keep track of whether the timeout has been called
 
   useEffect(() => {
-    const countAtLeastTwo = progress.every((prog) => prog >= threshold);
+    const countAtLeastTwo = progress.every((prog) => prog >= 70);
 
     if (countAtLeastTwo && !timeoutCalled.current) {
       timeoutCalled.current = true; // Set the flag to true
@@ -63,7 +60,7 @@ function Game() {
         setPage(4);
       }, 1250);
     }
-  }, [progress, setPage, threshold, showConfetti]);
+  }, [progress, setPage, showConfetti]);
 
   useEffect(() => {
     if (page === 3) {
@@ -88,8 +85,8 @@ function Game() {
 
   return (
     <div
-      className="text-white transform zoom-[50%] sm:zoom-[50%] md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
-      style={page === 3 ? {} : { display: "none" }}
+      className="text-white transform md:scale-100 relative bottom-[5rem] md:bottom-[2rem]"
+      style={page === 3 ? { position: "relative" } : { display: "none" }}
     >
       <Title bigger={true} type="scratch" />
 
