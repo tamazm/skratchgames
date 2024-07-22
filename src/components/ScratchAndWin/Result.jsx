@@ -28,7 +28,7 @@ function Result() {
       )}
       {!winning && (
         <>
-          <LResult
+          <WResult
             handlelose={() => {
               window.location.reload();
             }}
