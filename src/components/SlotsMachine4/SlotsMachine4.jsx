@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./SlotsMachine4.module.css";
 import Scanvas from "../../assets/slotsmachine/slotscanvas.png";
 import Sbg from "../../assets/slotsmachine/slotsbg.png";
@@ -8,11 +8,15 @@ import item3 from "../../assets/slotsmachine/item (3).png";
 import Form from "../Form/Form";
 import Confetti from "react-confetti";
 
+import { motion } from "framer-motion";
+
 import title from "../../assets/slotsmachine/slottitle.png";
 import WinningResult from "../winningResult";
 import preview from "../../assets/slotsmachine/pre.png";
 
 function SlotsMachine4() {
+  const [loading, setLoading] = useState(true);
+
   const [animate, setAnimate] = useState(false);
   const [animate2, setAnimate2] = useState(false);
   const [winning, setwinning] = useState(false);
@@ -54,9 +58,27 @@ function SlotsMachine4() {
   const randomImage2 = getRandomImage(imageSources);
   const randomImage3 = getRandomImage(imageSources);
 
+  useEffect(() => {
+    const images = Array.from(document.getElementById("slots-machine-main").getElementsByTagName("img"));
+
+    const loadImage = (image) => {
+      return new Promise((resolve, reject) => {
+        const loadImg = new Image();
+        loadImg.src = image.src;
+
+        loadImg.onload = () => resolve(image.src);
+        loadImg.onerror = (err) => reject(err);
+      });
+    };
+
+    Promise.all(images.map((image) => loadImage(image)))
+      .then(() => setLoading(false))
+      .catch((err) => console.log("Failed to load images", err));
+  }, [setLoading]);
+
+
   return (
-    <div className={styles.main}>
-      {winning && (
+    <motion.div id="slots-machine-main" initial={{ opacity: 0 }} animate={{ opacity: loading ? 0 : 1 }} transition={{ duration: 0.5 }} className={styles.main}>
         <WinningResult
           handlewin={() => {
             setwinning(false);
@@ -64,28 +86,16 @@ function SlotsMachine4() {
             setconfetti(false);
           }}
         />
-      )}
-      {confetti && (
-        <Confetti
-          style={{ zIndex: "9999999",backgroundRepeat:'repeat' }}
-        />
-      )}
+      {confetti && <Confetti style={{ zIndex: "9999999", backgroundRepeat: "repeat" }} />}
       {page === 0 && (
         <>
           <img src={title} className={styles.titleImg} />
-          <h2
-            style={{ fontFamily: "cb", textAlign: "center" }}
-            className={styles.title2}
-          >
-            Here at Skratchville we help organizations like yours generate new
-            leads, create innovative customer and staff incentives, all whilst
-            saving both time and money!
+          <h2 style={{ fontFamily: "cb", textAlign: "center" }} className={styles.title2}>
+            Here at Skratchville we help organizations like yours generate new leads, create innovative customer and staff incentives,
+            all whilst saving both time and money!
           </h2>
           <div className={styles.slotDiv}>
-            <div
-              className={styles.itemCont}
-              style={{ bottom: "80%", width: "75%" }}
-            >
+            <div className={styles.itemCont} style={{ bottom: "80%", width: "75%" }}>
               <div className={`${styles.itemDiv} ${styles.animate33}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
@@ -105,11 +115,7 @@ function SlotsMachine4() {
             <img src={Scanvas} alt="canvas" className={styles.slotCanvas1} />
             <img src={Sbg} className={styles.Sbg} />
           </div>
-          <button
-            className={styles.SBtn}
-            onClick={handlePage}
-            style={{ padding: "1rem" }}
-          >
+          <button className={styles.SBtn} onClick={handlePage} style={{ padding: "1rem" }}>
             Enter now
           </button>
         </>
@@ -121,9 +127,7 @@ function SlotsMachine4() {
             preview={preview}
             setPage={handlePage}
             accentColor={"Red"}
-            gradient={
-              "linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)"
-            }
+            gradient={"linear-gradient(to right, #960000 0%, #d40000 11%, #c20000 53%, #f70000 100%)"}
           />
         </>
       )}
@@ -131,52 +135,28 @@ function SlotsMachine4() {
         <>
           <div className={styles.slotDiv}>
             <div className={styles.itemCont}>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate ? styles.animate0 : styles.animate333
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate ? styles.animate0 : styles.animate333}`}>
                 <img src={randomImage} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate ? styles.animate1 : styles.animate333
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate ? styles.animate1 : styles.animate333}`}>
                 <img src={randomImage2} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate ? styles.animate2 : styles.animate333
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate ? styles.animate2 : styles.animate333}`}>
                 <img src={randomImage3} className={styles.item} />
               </div>
             </div>
             <div className={styles.itemCont} style={{ bottom: "80%" }}>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate2 ? styles.animate3 : ""
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate2 ? styles.animate3 : ""}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate2 ? styles.animate4 : ""
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate2 ? styles.animate4 : ""}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
               </div>
-              <div
-                className={`${styles.itemDiv} ${
-                  animate2 ? styles.animate5 : ""
-                }`}
-              >
+              <div className={`${styles.itemDiv} ${animate2 ? styles.animate5 : ""}`}>
                 <img src={item1} className={styles.item} />
                 <img src={item2} className={styles.item} />
                 <img src={item3} className={styles.item} />
@@ -190,7 +170,7 @@ function SlotsMachine4() {
           </button>
         </>
       )}
-    </div>
+    </motion.div>
   );
 }
 export default SlotsMachine4;
