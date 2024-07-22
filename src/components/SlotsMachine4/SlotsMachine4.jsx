@@ -76,9 +76,15 @@ function SlotsMachine4() {
       .catch((err) => console.log("Failed to load images", err));
   }, [setLoading]);
 
-
   return (
-    <motion.div id="slots-machine-main" initial={{ opacity: 0 }} animate={{ opacity: loading ? 0 : 1 }} transition={{ duration: 0.5 }} className={styles.main}>
+    <motion.div
+      id="slots-machine-main"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: loading ? 0 : 1 }}
+      transition={{ duration: 0.5 }}
+      className={styles.main}
+    >
+      {winning && (
         <WinningResult
           handlewin={() => {
             setwinning(false);
@@ -86,6 +92,7 @@ function SlotsMachine4() {
             setconfetti(false);
           }}
         />
+      )}
       {confetti && <Confetti style={{ zIndex: "9999999", backgroundRepeat: "repeat" }} />}
       {page === 0 && (
         <>
@@ -165,9 +172,9 @@ function SlotsMachine4() {
             <img src={Scanvas} alt="canvas" className={styles.slotCanvas} />
             <img src={Sbg} className={styles.Sbg} />
           </div>
-          <button className={styles.SBtn} onClick={handleSpin}>
+          <motion.button whileTap={{ scale: 0.85 }} className={styles.SBtn} onClick={handleSpin}>
             Spin
-          </button>
+          </motion.button>
         </>
       )}
     </motion.div>

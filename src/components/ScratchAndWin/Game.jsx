@@ -12,7 +12,7 @@ function Game() {
   const [progress, setProgress] = useState([0, 0, 0]);
 
   const generateRandomValue = () => {
-    const possibleValues = ["10$", "110$", "35$", "100$", "900$", "200$", "650$", "LOSE", "JACKPOT"];
+    const possibleValues = ["10$", "110$", "35$", "100$", "900$", "200$", "650$", "30$", "JACKPOT"];
     return possibleValues[Math.floor(Math.random() * possibleValues.length)];
   };
 
