@@ -6,7 +6,7 @@ function StartScreen() {
   const { page, setPage } = useMainContext();
 
   return (
-    <div style={{ position: "relative", bottom: "3rem", display: page === 1 ? "flex" : "none", minHeight: "95vh", flexDirection: "column", alignItems: "center" }}>
+    <div className="startscreenprintomato" style={{ position: "relative", display: page === 1 ? "flex" : "none", minHeight: "95vh", flexDirection: "column", alignItems: "center" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column" }}>
         <h1 style={{ fontFamily: "bs", fontSize: "3.25rem" }}>Printomato</h1>
 
