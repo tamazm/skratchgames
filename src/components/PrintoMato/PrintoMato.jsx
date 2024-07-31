@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 function PrintoMato() {
   const { loading, page, setPage, showConfetti } = useMainContext();
 
+  const [started, setStarted] = useState(false);
   const [gameOn, setGameOn] = useState(false);
   const [result, setResult] = useState(false);
   const [printResult, setPrintResult] = useState(false);
@@ -26,6 +27,7 @@ function PrintoMato() {
   const handleGame = () => {
     setResult(false);
     setGameOn(true);
+    setStarted(true)
     setTimeout(() => {
       setGameOn(false);
       setResult(true);
@@ -66,12 +68,12 @@ function PrintoMato() {
           />
         </div>
         <motion.img
-          whileTap={{ scale: gameOn ? 1 : 0.85 }}
+          whileTap={{ scale: started ? 1 : 0.85 }}
           src={GameBtn}
-          style={{ cursor: gameOn ? "default" : "pointer" }}
+          style={{ cursor: started ? "default" : "pointer" }}
           className={styles.GameBtn}
           onClick={() => {
-            gameOn ? "" : handleGame();
+            started ? "" : handleGame();
           }}
         />
         <div className={styles.SliderDiv}>
