@@ -1,0 +1,121 @@
+.main {
+  width: 100%;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    margin-bottom: 5rem;
+    min-height: 80vh;
+  }
+}
+.GameDiv {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.GameCanvas {
+  width: 15rem;
+}
+.printDiv {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  width: 9rem;
+  height: 12.5rem;
+  bottom: -10.6rem;
+  overflow: hidden;
+}
+.GameBtn {
+  position: absolute;
+  width: 2rem;
+  top: 22.3rem;
+  cursor: pointer;
+}
+.SliderDiv {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 9rem;
+  height: 12.5rem;
+  position: absolute;
+  bottom: 11.2rem;
+  border-radius: 0.5rem;
+}
+.SliderCont {
+  position: absolute;
+  left: 8.5rem;
+  gap: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.Item {
+  width: 4rem;
+}
+.ResultPrintDiv {
+  width: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.PrintCanvas {
+  width: 6rem;
+}
+.PrintImg {
+  position: absolute;
+  width: 4rem;
+  background-color: red;
+}
+.AdSlider {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: red;
+  width: 9rem;
+  top: 0rem;
+}
+@keyframes animation1 {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(100px);
+  }
+}
+.AdAnimation {
+  animation: animation1 4s linear infinite alternate;
+}
+@keyframes animation2 {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-590px);
+  }
+}
+.SliderAnimation {
+  animation: animation2 0.5s forwards linear infinite;
+}
+@keyframes animation3 {
+  0% {
+    transform: translateY(-100px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+.PrintAnimation {
+  animation: animation3 3s forwards linear;
+}
