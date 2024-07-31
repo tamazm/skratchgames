@@ -78,7 +78,7 @@ function PrintoMato() {
         />
         <div className={styles.SliderDiv}>
           <div className={styles.AdSlider}>
-            <p style={{ whiteSpace: "nowrap", fontSize: "0.4rem", color: "#fff" }} className={styles.AdAnimation}>
+            <p style={{ background: "#a60700", whiteSpace: "nowrap", fontSize: "0.4rem", color: "#fff" }} className={styles.AdAnimation}>
               Sponsored By Coa-Cola Sponsored By Coa-Cola Sponsored By Coa-Cola Sponsored By Coa-Cola
             </p>
           </div>
