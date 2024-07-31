@@ -1,6 +1,7 @@
 import mockup from "./assets/mockup.png";
 import { motion } from "framer-motion";
 import { useMainContext } from "./MainContext";
+import PrintoMato from "../PrintoMato/PrintoMato";
 
 function StartScreen() {
   const { page, setPage } = useMainContext();
@@ -13,12 +14,15 @@ function StartScreen() {
         <h2 style={{ fontFamily: "bs", fontSize: "1.5rem" }}>Picture. Perfect. Promotions.</h2>
       </div>
 
-      <img style={{ width: "22.5rem" }} src={mockup} />
+      {/* <img style={{ width: "22.5rem" }} src={mockup} /> */}
+
+      <PrintoMato previewmode={true} />
 
       <motion.button
         onClick={() => setPage(2)}
         whileTap={{ scale: 0.85 }}
         style={{
+          zIndex: "99",
           fontFamily: "bs",
           fontSize: "0.9rem",
           padding: "0.75rem 1.25rem",

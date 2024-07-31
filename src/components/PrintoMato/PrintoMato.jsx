@@ -8,11 +8,11 @@ import Item3 from "../../assets/printomato/item (3).png";
 // import PrintBar from "../../assets/printomato/printBar.png";
 import PrintCanvas from "../../assets/printomato/PrintCanvas.png";
 import { useMainContext } from "../PrintoMatoCont/MainContext";
-const images = [Item1, Item2, Item3];
-
 import { motion } from "framer-motion";
 
-function PrintoMato() {
+const images = [Item1, Item2, Item3];
+
+function PrintoMato({ previewmode }) {
   const { loading, page, setPage, showConfetti } = useMainContext();
 
   const [started, setStarted] = useState(false);
@@ -20,42 +20,58 @@ function PrintoMato() {
   const [result, setResult] = useState(false);
   const [printResult, setPrintResult] = useState(false);
   const [finalImg, setFinalImg] = useState(null);
+
   const handleFinal = () => {
     const randomIndex = Math.floor(Math.random() * images.length);
     setFinalImg(images[randomIndex]);
   };
+
   const handleGame = () => {
     setResult(false);
     setGameOn(true);
-    setStarted(true)
+    setStarted(true);
     setTimeout(() => {
       setGameOn(false);
       setResult(true);
       handleFinal();
       setTimeout(() => {
-        setPrintResult(true);
+        if (!previewmode) {
+          setPrintResult(true);
+        }
       }, 2500);
     }, 2500);
   };
 
   useEffect(() => {
-    if (printResult) {
+    if (printResult && !previewmode) {
       setTimeout(() => {
-        showConfetti(true)
+        showConfetti(true);
         setPage(4);
       }, 3500);
     }
   }, [printResult]);
 
+  useEffect(() => {
+    if (previewmode) {
+      handleGame();
+    }
+  }, [previewmode]);
+
   return (
     <motion.div
-      style={page === 3 ? { position: "relative", display: "flex", flexDirection: "column", gap: "0.5rem" } : { display: "none" }}
+      style={
+        page === 3 && !previewmode
+          ? { position: "relative", display: "flex", flexDirection: "column", gap: "0.5rem" }
+          : page === 1 && previewmode
+          ? { position: "relative", display: "flex", flexDirection: "column", gap: "0.5rem" }
+          : { display: "none" }
+      }
       initial={{ opacity: 0 }}
       animate={{ opacity: loading ? 0 : 1 }}
       transition={{ duration: 0.5 }}
       className={styles.main}
     >
-      <h1 style={{ fontFamily: "bs", fontSize: "3.25rem" }}>Printomato</h1>
+      {!previewmode && <h1 style={{ fontFamily: "bs", fontSize: "3.25rem" }}>Printomato</h1>}
 
       <div className={styles.GameDiv}>
         <div className={styles.GameCanvasWrapper}>
@@ -70,15 +86,20 @@ function PrintoMato() {
         <motion.img
           whileTap={{ scale: started ? 1 : 0.85 }}
           src={GameBtn}
-          style={{ cursor: started ? "default" : "pointer" }}
+          style={{ cursor: started || previewmode ? "default" : "pointer" }}
           className={styles.GameBtn}
           onClick={() => {
-            started ? "" : handleGame();
+            if (!previewmode) {
+              handleGame();
+            }
           }}
         />
         <div className={styles.SliderDiv}>
           <div className={styles.AdSlider}>
-            <p style={{ background: "#a60700", whiteSpace: "nowrap", fontSize: "0.4rem", color: "#fff" }} className={styles.AdAnimation}>
+            <p
+              style={{ background: "#a60700", whiteSpace: "nowrap", fontSize: "0.4rem", color: "#fff" }}
+              className={styles.AdAnimation}
+            >
               Sponsored By Coa-Cola Sponsored By Coa-Cola Sponsored By Coa-Cola Sponsored By Coa-Cola
             </p>
           </div>
