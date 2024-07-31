@@ -13,7 +13,7 @@ const images = [Item1, Item2, Item3];
 import { motion } from "framer-motion";
 
 function PrintoMato() {
-  const { loading, page, setPage, showConfeti } = useMainContext();
+  const { loading, page, setPage, showConfetti } = useMainContext();
 
   const [gameOn, setGameOn] = useState(false);
   const [result, setResult] = useState(false);
@@ -39,7 +39,7 @@ function PrintoMato() {
   useEffect(() => {
     if (printResult) {
       setTimeout(() => {
-        showConfeti(true)
+        showConfetti(true)
         setPage(4);
       }, 3500);
     }

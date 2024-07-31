@@ -75,14 +75,12 @@
 .PrintImg {
   position: absolute;
   width: 4rem;
-  background-color: red;
 }
 .AdSlider {
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: end;
-  background-color: red;
   width: 9rem;
   top: 0rem;
 }
