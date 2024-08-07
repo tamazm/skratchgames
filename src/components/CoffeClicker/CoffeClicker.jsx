@@ -7,7 +7,9 @@ import cosCursor from '../../assets/coffeclicker/mouse.png';
 
 function CoffeClicker() {
   const [page, setPage] = useState(0);
-
+    const handlePage = () =>{
+        setPage(1)
+    }
   return (
     <div className={styles.main} style={{ backgroundImage: `url(${bg})`, cursor:`url(${cosCursor}), auto`}}>
       {page === 0 && (
@@ -19,7 +21,12 @@ function CoffeClicker() {
             saving both time and money!
           </p>
           <img src={CC} className={styles.CoffeClicker} />
-          <img src={EnterBtn} className={styles.EnterBtn} />
+          <img src={EnterBtn} className={styles.EnterBtn} onClick={handlePage}/>
+        </div>
+      )}
+      {page === 1 && (
+        <div className={styles.page1}>
+            
         </div>
       )}
     </div>
