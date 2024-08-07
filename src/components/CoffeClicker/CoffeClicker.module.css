@@ -1,0 +1,33 @@
+.main {
+  width: 100%;
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  cursor: url('../../assets/coffeclicker/mouse.png'), auto;
+}
+.page0 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #61140e;
+}
+.CoffeClicker {
+  width: 35rem;
+}
+.Header {
+  font-size: 5rem;
+  font-family: "bs";
+}
+.subText {
+  width: 60%;
+  font-size: 1.1rem;
+  text-align: center;
+}
+.EnterBtn {
+  width: 10rem;
+}

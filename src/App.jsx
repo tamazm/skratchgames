@@ -8,6 +8,7 @@ import ScratchAndWin from "./components/ScratchAndWin/Main";
 import BallGame from "./components/BallGame";
 import GrabberGame from "./components/GrabberGame";
 import PrintoMato from "./components/PrintoMatoCont/Main";
+import CoffeClicker from "./components/CoffeClicker";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/prize-machine" element={<BallGame />} />
         <Route path="/claw-machine" element={<GrabberGame/>}/>
         <Route path="/printomato" element={<PrintoMato />} />
+        <Route path="/coffeeclicker" element={<CoffeClicker />} />
       </Routes>
     </Router>
   );
