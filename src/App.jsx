@@ -6,6 +6,7 @@ import "./App.css";
 
 import ScratchAndWin from "./components/ScratchAndWin/Main";
 import BallGame from "./components/BallGame";
+import GrabberGame from "./components/GrabberGame";
 import PrintoMato from "./components/PrintoMatoCont/Main";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/quiz-game" element={<QuizzGame3 />} />
         <Route path="/scratch-and-win" element={<ScratchAndWin />} />
         <Route path="/prize-machine" element={<BallGame />} />
+        <Route path="/claw-machine" element={<GrabberGame/>}/>
         <Route path="/printomato" element={<PrintoMato />} />
       </Routes>
     </Router>

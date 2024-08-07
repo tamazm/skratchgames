@@ -69,7 +69,9 @@ function Title({ accentColor, type, bigger }) {
           Scratch n Win
         </h1>
       )}
-
+      {type === "claw" && (
+        <img src={ClawHeader} style={{width:'70%'}} />
+      )}
       {type === "printomato" && (
         <>
           <h1 style={{ fontFamily: "bs", color: accentColor, fontSize: "3.25rem" }}>Printomato</h1>
