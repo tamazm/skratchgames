@@ -8,7 +8,7 @@ import Title from "../Title";
 function Form({ type = "form", preview, setPage, accentColor = "#c6aa60", gradient = "linear-gradient(to right, #ad8214, #f4da53)" }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      <Title type={type} />
+      <Title accentColor={accentColor} type={type} />
 
       <motion.div
         initial={{ opacity: 0 }}

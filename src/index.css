@@ -10,6 +10,12 @@
   font-family: "rb";
   src: url('./assets/rb.otf');
 }
+
+@font-face {
+  font-family: "bs";
+  src: url('./assets/Berlin Sans FB Demi Bold.ttf');
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -22,3 +28,5 @@ body {
   overflow-x: hidden;
   background-color: #181818;
 }
+
+

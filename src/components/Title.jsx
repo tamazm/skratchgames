@@ -3,7 +3,7 @@ import fortune from "./WheelOfFortune/assets/fortune.png";
 import slot from "../assets/slotsmachine/slottitle.png";
 import ClawHeader from "../assets/grabbergame/clawheader.png";
 
-function Title({ type, bigger }) {
+function Title({ accentColor, type, bigger }) {
   return (
     <div
       className="title-texts"
@@ -15,23 +15,18 @@ function Title({ type, bigger }) {
         gap: "1.75rem",
       }}
     >
-      {type === "quiz" && (
-        <h1 style={{ color: "Red", fontSize: "3rem", fontFamily: "cb" }}>
-          Quiz
-        </h1>
-      )}
+      {type === "quiz" && <h1 style={{ color: "Red", fontSize: "3rem", fontFamily: "cb" }}>Quiz</h1>}
       {type === "ballgame" && (
         <h1
           style={{
-            background:
-              "linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%)",
+            background: "linear-gradient(90deg, hsla(186, 33%, 94%, 1) 0%, hsla(216, 41%, 79%, 1) 100%)",
             WebkitBackgroundClip: "text" /* For WebKit browsers */,
             backgroundClip: "text" /* Standard property for other browsers */,
             color: "transparent" /* Ensure the text itself is transparent */,
             fontSize: "2.5rem",
             fontFamily: "rb" /* Ensure 'cb' is a valid font-family */,
             fontWeight: "bold" /* Add font-weight if needed */,
-            textAlign:'center'
+            textAlign: "center",
           }}
         >
           Prize Machine
@@ -74,8 +69,11 @@ function Title({ type, bigger }) {
           Scratch n Win
         </h1>
       )}
-      {type === "claw" && (
-        <img src={ClawHeader} style={{width:'70%'}} />
+
+      {type === "printomato" && (
+        <>
+          <h1 style={{ fontFamily: "bs", color: accentColor, fontSize: "3.25rem" }}>Printomato</h1>
+        </>
       )}
     </div>
   );
