@@ -21,7 +21,7 @@ function App() {
         <Route path="/prize-machine" element={<BallGame />} />
         <Route path="/claw-machine" element={<GrabberGame/>}/>
         <Route path="/printomato" element={<PrintoMato />} />
-        <Route path="/coffeeclicker" element={<CoffeClicker />} />
+        <Route path="/coffee-clicker" element={<CoffeClicker />} />
       </Routes>
     </Router>
   );
