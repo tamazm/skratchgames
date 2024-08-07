@@ -1,6 +1,7 @@
 import wheelof from "./WheelOfFortune/assets/wheelof.png";
 import fortune from "./WheelOfFortune/assets/fortune.png";
 import slot from "../assets/slotsmachine/slottitle.png";
+import ClawHeader from "../assets/grabbergame/clawheader.png";
 
 function Title({ type, bigger }) {
   return (
@@ -72,6 +73,9 @@ function Title({ type, bigger }) {
         >
           Scratch n Win
         </h1>
+      )}
+      {type === "claw" && (
+        <img src={ClawHeader} style={{width:'70%'}} />
       )}
     </div>
   );

@@ -6,7 +6,7 @@ import "./App.css";
 
 import ScratchAndWin from "./components/ScratchAndWin/Main";
 import BallGame from "./components/BallGame";
-
+import GrabberGame from "./components/GrabberGame";
 function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/quiz-game" element={<QuizzGame3 />} />
         <Route path="/scratch-and-win" element={<ScratchAndWin />} />
         <Route path="/prize-machine" element={<BallGame />} />
+        <Route path="/claw-machine" element={<GrabberGame/>}/>
       </Routes>
     </Router>
   );

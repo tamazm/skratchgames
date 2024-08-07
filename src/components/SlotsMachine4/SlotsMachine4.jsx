@@ -20,7 +20,6 @@ function SlotsMachine4() {
   const [animate, setAnimate] = useState(false);
   const [animate2, setAnimate2] = useState(false);
   const [winning, setwinning] = useState(false);
-  const [losing, setlosing] = useState(false);
   const imageSources = [item1, item2, item3];
   const [page, setpage] = useState(0);
   const [confetti, setconfetti] = useState(false);
