@@ -17,7 +17,6 @@ import btnLeft from "../../assets/grabbergame/btn 07.png";
 import WinningResult from "../winningResult";
 import Confetti from "react-confetti";
 
-
 function GrabberGame() {
   const [position, setPosition] = useState(0);
   const parentRef = useRef(null);
@@ -25,11 +24,9 @@ function GrabberGame() {
   const [isGrabbed, setIsGrabbed] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isImageVisible, setIsImageVisible] = useState(false);
-  const [timeoutId, setTimeoutId] = useState(null);
   const [result, setResult] = useState(false);
-  const [isAnimating] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const [ClawRot, setClawRot] = useState(0);
-  const [gameEnded, setGameEnded] = useState(false);
   const [page, setPage] = useState(0);
   const [confetti, setConfeti] = useState(false);
 
@@ -47,19 +44,15 @@ function GrabberGame() {
   };
   const handleResult = () => {
     setResult(false);
-    setPage(0);
     setConfeti(false);
-  }
-  const toggleImageVisibility = () => {
     setIsImageVisible(false);
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
-    const newTimeoutId = setTimeout(() => {
+    setIsAnimating(false);
+    setPage(0);
+  };
+  const toggleImageVisibility = () => {
+    setTimeout(() => {
       setIsImageVisible(true);
-      setTimeoutId(null);
-    }, 1000); // Adjust the duration as needed
-    setTimeoutId(newTimeoutId);
+    }, 1000);
   };
 
   const handleRandomImage = () => {
@@ -67,14 +60,12 @@ function GrabberGame() {
   };
 
   const handleGrab = () => {
-    if (gameEnded) return;
     if (!isAnimating) {
-      toggleImageVisibility();
       handleRandomImage();
+      toggleImageVisibility();
       setIsGrabbed(true); // Trigger the animation
       setTimeout(() => {
         setIsGrabbed(false); // End the animation
-        setGameEnded(true);
         setResult(true);
         setConfeti(true);
       }, 2000); // Adjust the duration as needed
@@ -141,12 +132,6 @@ function GrabberGame() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-
-  useEffect(() => {
-    if (gameEnded) {
-      setTimeout(() => {}, 1250);
-    }
-  }, [gameEnded]);
 
   return (
     <div
@@ -217,16 +202,18 @@ function GrabberGame() {
                   isGrabbed ? styles.handleAnimation : ""
                 }`}
               />
-              {isImageVisible && images[currentImageIndex] && (
-                <div className={styles.itemDiv}>
+              <div
+                className={`${styles.itemDiv} ${
+                  isGrabbed ? styles.handleAnimation : ""
+                }`}
+              >
+                {isImageVisible && images[currentImageIndex] && (
                   <img
                     src={images[currentImageIndex]}
-                    className={`${styles.ItemsContImg} ${
-                      isGrabbed ? styles.handleRevAnimation : ""
-                    }`}
+                    className={styles.ItemsContImg}
                   />
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
           <div className={styles.ClawBtnDiv}>
@@ -243,9 +230,15 @@ function GrabberGame() {
         </div>
       )}
       {result && (
-        <WinningResult handlewin={() => {handleResult()}}/>
+        <WinningResult
+          handlewin={() => {
+            handleResult();
+          }}
+        />
       )}
-      {confetti && <Confetti style={{ zIndex: "9999999", backgroundRepeat: "repeat" }} />}
+      {confetti && (
+        <Confetti style={{ zIndex: "9999999", backgroundRepeat: "repeat" }} />
+      )}
     </div>
   );
 }
