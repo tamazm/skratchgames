@@ -31,8 +31,6 @@
   width: 10rem;
 }
 
-
-
 .page1{
     width: 100%;
     height: 100%;
@@ -51,4 +49,18 @@
     justify-content: center;
     color: #fff;
     font-size: 4rem;
+}
+.timerDiv{
+  color: #61140e;
+  font-size: 4rem;
+  font-family: 'bs';
+}
+.scaledDown {
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+.scaledUp {
+  transition: transform 0.3s ease;
+  transform: scale(1.2); /* Adjust scale factor as needed */
 }

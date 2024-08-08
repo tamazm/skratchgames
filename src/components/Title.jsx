@@ -43,6 +43,11 @@ function Title({ accentColor, type, bigger }) {
           <img style={{ width: "24rem" }} src={slot} />
         </>
       )}
+      {type === 'coffeclicker' &&(
+        <>
+          <h1 style={{color:'#61140e',fontSize:'4rem',fontFamily:'bs'}}>Clicker</h1>
+        </>
+      )}
       {type === "scratch" && bigger && (
         <h1
           style={{
