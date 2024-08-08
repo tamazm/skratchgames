@@ -30,3 +30,25 @@
 .EnterBtn {
   width: 10rem;
 }
+
+
+
+.page1{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.countDiv{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 100%;
+    background-color: #61140e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 4rem;
+}
