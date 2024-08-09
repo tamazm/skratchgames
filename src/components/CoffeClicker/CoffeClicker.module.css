@@ -84,3 +84,17 @@
     opacity: 0;
   }
 }
+@media only screen and (max-width: 768px) {
+  .main{
+    padding: 2rem;
+    min-height: 100vh;
+  }
+  .subText{
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  .coffeeSeedDiv{
+    width: 100%;
+    height: 80%;
+  }
+}
