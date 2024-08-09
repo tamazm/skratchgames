@@ -11,7 +11,7 @@ import preview from "../../assets/coffeclicker/preview.png";
 import coffeeSeed from "../../assets/coffeclicker/coffeeSeed.png";
 
 function CoffeClicker() {
-  const [page, setPage] = useState(2);
+  const [page, setPage] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(5);
   const [isActive, setIsActive] = useState(false);
   const [count, setCount] = useState(0);
