@@ -37,7 +37,14 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
     justify-content: space-around;
+}
+.coffeeSeedDiv{
+  position: absolute;
+  width: 60rem;
+  height: 50rem;
+  z-index: 0;
 }
 .countDiv{
     width: 10rem;
@@ -49,18 +56,31 @@
     justify-content: center;
     color: #fff;
     font-size: 4rem;
+    z-index: 1;
 }
 .timerDiv{
   color: #61140e;
   font-size: 4rem;
+  z-index: 1;
   font-family: 'bs';
 }
 .scaledDown {
   transition: transform 0.3s ease;
   transform: scale(1);
 }
-
 .scaledUp {
   transition: transform 0.3s ease;
   transform: scale(1.2); /* Adjust scale factor as needed */
+}
+.spawnImage{
+  width: 3rem;
+  animation: fadeOut 1.5s forwards;
+}
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

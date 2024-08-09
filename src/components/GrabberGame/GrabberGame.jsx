@@ -29,6 +29,7 @@ function GrabberGame() {
   const [ClawRot, setClawRot] = useState(0);
   const [page, setPage] = useState(0);
   const [confetti, setConfeti] = useState(false);
+  const [intervalId, setIntervalId] = useState(null);
 
   const images = [
     Claw,
@@ -103,7 +104,24 @@ function GrabberGame() {
       Math.min(prevPosition + 10, 0.6 * parentWidth - imageWidth)
     );
   };
+  const startMovingLeft = () => {
+    if (intervalId) return; // Prevent multiple intervals
+    const id = setInterval(handleMoveLeft, 50); // Adjust the interval time as needed
+    setIntervalId(id);
+  };
 
+  const startMovingRight = () => {
+    if (intervalId) return; // Prevent multiple intervals
+    const id = setInterval(handleMoveRight, 50); // Adjust the interval time as needed
+    setIntervalId(id);
+  };
+
+  const stopMoving = () => {
+    if (intervalId) {
+      clearInterval(intervalId);
+      setIntervalId(null);
+    }
+  };
   useEffect(() => {
     const handleKeyDown = (event) => {
       const parentWidth = parentRef.current.offsetWidth;
@@ -217,10 +235,10 @@ function GrabberGame() {
             </div>
           </div>
           <div className={styles.ClawBtnDiv}>
-            <button className={styles.PadBtn} onClick={handleMoveLeft}>
+            <button className={styles.PadBtn} onMouseDown={startMovingLeft} onMouseUp={stopMoving} onMouseLeave={stopMoving}>
               <img src={btnLeft} className={styles.GameButton} />
             </button>
-            <button className={styles.PadBtn} onClick={handleMoveRight}>
+            <button className={styles.PadBtn} onMouseDown={startMovingRight} onMouseUp={stopMoving} onMouseLeave={stopMoving}>
               <img src={btnRight} className={styles.GameButton} />
             </button>
             <button className={styles.PadBtn} onClick={handleGrab}>
